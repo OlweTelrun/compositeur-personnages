@@ -1,0 +1,1636 @@
+{
+ "schema": "atelier/2",
+ "mode": "png",
+ "note": "Pièces PNG au style du jeu, découpées de planches du générateur d'images (outils/decouper_planches.py). Le placement est calculé à l'affichage (public/js/rendu-png.js) à partir de pieces.json.",
+ "toile": [
+  520,
+  900
+ ],
+ "ordre": [
+  "corps",
+  "bas",
+  "haut",
+  "chaussures",
+  "tete",
+  "nez",
+  "bouche",
+  "yeux",
+  "sourcils",
+  "cheveux",
+  "lunettes",
+  "chapeau"
+ ],
+ "groupes": {
+  "visage": [
+   "tete",
+   "yeux",
+   "sourcils",
+   "nez",
+   "bouche",
+   "cheveux"
+  ],
+  "corps": [
+   "corps"
+  ],
+  "tenue": [
+   "haut",
+   "bas",
+   "chaussures",
+   "chapeau",
+   "lunettes"
+  ]
+ },
+ "silhouettes": [
+  {
+   "id": "fine",
+   "nom": "Fine",
+   "genre": "f",
+   "gabarit": "mince"
+  },
+  {
+   "id": "moyenne",
+   "nom": "Moyenne",
+   "genre": "f",
+   "gabarit": "moyen"
+  },
+  {
+   "id": "courbes",
+   "nom": "Courbes",
+   "genre": "f",
+   "gabarit": "moyen"
+  },
+  {
+   "id": "forte",
+   "nom": "Forte",
+   "genre": "f",
+   "gabarit": "rond"
+  },
+  {
+   "id": "mince-h",
+   "nom": "Mince",
+   "genre": "h",
+   "gabarit": "mince"
+  },
+  {
+   "id": "moyen-h",
+   "nom": "Moyen",
+   "genre": "h",
+   "gabarit": "moyen"
+  },
+  {
+   "id": "athletique",
+   "nom": "Athlétique",
+   "genre": "h",
+   "gabarit": "muscle"
+  },
+  {
+   "id": "rond-h",
+   "nom": "Rond",
+   "genre": "h",
+   "gabarit": "rond"
+  }
+ ],
+ "categories": {
+  "yeux": {
+   "nom": "Yeux",
+   "groupe": "visage",
+   "variantes": [
+    {
+     "id": "ronds-marron",
+     "nom": "Ronds marron",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "yeux",
+       "fichier": "yeux/ronds-marron.png"
+      }
+     ]
+    },
+    {
+     "id": "amande-verts",
+     "nom": "Amande verts",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "yeux",
+       "fichier": "yeux/amande-verts.png"
+      }
+     ]
+    },
+    {
+     "id": "paupieres-lourdes",
+     "nom": "Paupières lourdes",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "yeux",
+       "fichier": "yeux/paupieres-lourdes.png"
+      }
+     ]
+    },
+    {
+     "id": "chat-bleus",
+     "nom": "En chat bleus",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "yeux",
+       "fichier": "yeux/chat-bleus.png"
+      }
+     ]
+    },
+    {
+     "id": "petits-gris",
+     "nom": "Petits gris",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "yeux",
+       "fichier": "yeux/petits-gris.png"
+      }
+     ]
+    },
+    {
+     "id": "noisette",
+     "nom": "Noisette",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "yeux",
+       "fichier": "yeux/noisette.png"
+      }
+     ]
+    },
+    {
+     "id": "mi-clos-bleus",
+     "nom": "Mi-clos bleus",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "yeux",
+       "fichier": "yeux/mi-clos-bleus.png"
+      }
+     ]
+    },
+    {
+     "id": "grands-cils",
+     "nom": "Grands cils",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "yeux",
+       "fichier": "yeux/grands-cils.png"
+      }
+     ]
+    },
+    {
+     "id": "ambre",
+     "nom": "Ambre",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "yeux",
+       "fichier": "yeux/ambre.png"
+      }
+     ]
+    }
+   ]
+  },
+  "sourcils": {
+   "nom": "Sourcils",
+   "groupe": "visage",
+   "variantes": [
+    {
+     "id": "arques",
+     "nom": "Arqués",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "sourcils",
+       "fichier": "sourcils/arques.png"
+      }
+     ]
+    },
+    {
+     "id": "droits",
+     "nom": "Droits",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "sourcils",
+       "fichier": "sourcils/droits.png"
+      }
+     ]
+    },
+    {
+     "id": "touffus",
+     "nom": "Touffus",
+     "genre": "h",
+     "calques": [
+      {
+       "z": "sourcils",
+       "fichier": "sourcils/touffus.png"
+      }
+     ]
+    },
+    {
+     "id": "fins",
+     "nom": "Fins",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "sourcils",
+       "fichier": "sourcils/fins.png"
+      }
+     ]
+    },
+    {
+     "id": "tristes",
+     "nom": "Tristes",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "sourcils",
+       "fichier": "sourcils/tristes.png"
+      }
+     ]
+    },
+    {
+     "id": "fâches",
+     "nom": "Fâchés",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "sourcils",
+       "fichier": "sourcils/fâches.png"
+      }
+     ]
+    },
+    {
+     "id": "courts",
+     "nom": "Courts",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "sourcils",
+       "fichier": "sourcils/courts.png"
+      }
+     ]
+    },
+    {
+     "id": "arques-longs",
+     "nom": "Arqués longs",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "sourcils",
+       "fichier": "sourcils/arques-longs.png"
+      }
+     ]
+    },
+    {
+     "id": "courbes",
+     "nom": "Courbes",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "sourcils",
+       "fichier": "sourcils/courbes.png"
+      }
+     ]
+    }
+   ]
+  },
+  "nez": {
+   "nom": "Nez",
+   "groupe": "visage",
+   "variantes": [
+    {
+     "id": "petit",
+     "nom": "Petit",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "nez",
+       "fichier": "nez/petit.png"
+      }
+     ]
+    },
+    {
+     "id": "pointu",
+     "nom": "Pointu",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "nez",
+       "fichier": "nez/pointu.png"
+      }
+     ]
+    },
+    {
+     "id": "large",
+     "nom": "Large",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "nez",
+       "fichier": "nez/large.png"
+      }
+     ]
+    },
+    {
+     "id": "retrousse",
+     "nom": "Retroussé",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "nez",
+       "fichier": "nez/retrousse.png"
+      }
+     ]
+    },
+    {
+     "id": "bouton",
+     "nom": "Bouton",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "nez",
+       "fichier": "nez/bouton.png"
+      }
+     ]
+    },
+    {
+     "id": "long",
+     "nom": "Long",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "nez",
+       "fichier": "nez/long.png"
+      }
+     ]
+    },
+    {
+     "id": "arrondi",
+     "nom": "Arrondi",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "nez",
+       "fichier": "nez/arrondi.png"
+      }
+     ]
+    },
+    {
+     "id": "plat",
+     "nom": "Plat",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "nez",
+       "fichier": "nez/plat.png"
+      }
+     ]
+    },
+    {
+     "id": "fort",
+     "nom": "Fort",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "nez",
+       "fichier": "nez/fort.png"
+      }
+     ]
+    }
+   ]
+  },
+  "bouche": {
+   "nom": "Bouche",
+   "groupe": "visage",
+   "variantes": [
+    {
+     "id": "sourire",
+     "nom": "Sourire",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "bouche",
+       "fichier": "bouche/sourire.png"
+      }
+     ]
+    },
+    {
+     "id": "grand-sourire",
+     "nom": "Grand sourire",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "bouche",
+       "fichier": "bouche/grand-sourire.png"
+      }
+     ]
+    },
+    {
+     "id": "neutre",
+     "nom": "Neutre",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "bouche",
+       "fichier": "bouche/neutre.png"
+      }
+     ]
+    },
+    {
+     "id": "fine",
+     "nom": "Fine",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "bouche",
+       "fichier": "bouche/fine.png"
+      }
+     ]
+    },
+    {
+     "id": "pulpeuse",
+     "nom": "Pulpeuse",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "bouche",
+       "fichier": "bouche/pulpeuse.png"
+      }
+     ]
+    },
+    {
+     "id": "moue",
+     "nom": "Moue",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "bouche",
+       "fichier": "bouche/moue.png"
+      }
+     ]
+    },
+    {
+     "id": "surprise",
+     "nom": "Surprise",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "bouche",
+       "fichier": "bouche/surprise.png"
+      }
+     ]
+    },
+    {
+     "id": "en-coin",
+     "nom": "En coin",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "bouche",
+       "fichier": "bouche/en-coin.png"
+      }
+     ]
+    },
+    {
+     "id": "rire",
+     "nom": "Rire",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "bouche",
+       "fichier": "bouche/rire.png"
+      }
+     ]
+    }
+   ]
+  },
+  "tete": {
+   "nom": "Tête",
+   "groupe": "visage",
+   "variantes": [
+    {
+     "id": "ovale",
+     "nom": "Ovale",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "tete",
+       "fichier": "tete/ovale.png"
+      }
+     ]
+    },
+    {
+     "id": "ronde",
+     "nom": "Ronde",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "tete",
+       "fichier": "tete/ronde.png"
+      }
+     ]
+    },
+    {
+     "id": "carree",
+     "nom": "Carrée",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "tete",
+       "fichier": "tete/carree.png"
+      }
+     ]
+    },
+    {
+     "id": "allongee",
+     "nom": "Allongée",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "tete",
+       "fichier": "tete/allongee.png"
+      }
+     ]
+    },
+    {
+     "id": "coeur",
+     "nom": "Cœur",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "tete",
+       "fichier": "tete/coeur.png"
+      }
+     ]
+    },
+    {
+     "id": "large",
+     "nom": "Large",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "tete",
+       "fichier": "tete/large.png"
+      }
+     ]
+    },
+    {
+     "id": "etroite",
+     "nom": "Étroite",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "tete",
+       "fichier": "tete/etroite.png"
+      }
+     ]
+    },
+    {
+     "id": "joufflue",
+     "nom": "Joufflue",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "tete",
+       "fichier": "tete/joufflue.png"
+      }
+     ]
+    },
+    {
+     "id": "menton",
+     "nom": "Menton marqué",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "tete",
+       "fichier": "tete/menton.png"
+      }
+     ]
+    }
+   ]
+  },
+  "cheveux": {
+   "nom": "Cheveux",
+   "groupe": "visage",
+   "variantes": [
+    {
+     "id": "herisse",
+     "nom": "Court hérissé",
+     "genre": "h",
+     "calques": [
+      {
+       "z": "cheveux",
+       "fichier": "cheveux/herisse.png"
+      }
+     ]
+    },
+    {
+     "id": "frange",
+     "nom": "Frange de côté",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "cheveux",
+       "fichier": "cheveux/frange.png"
+      }
+     ]
+    },
+    {
+     "id": "mi-long",
+     "nom": "Mi-long",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "cheveux",
+       "fichier": "cheveux/mi-long.png"
+      }
+     ]
+    },
+    {
+     "id": "long",
+     "nom": "Long lisse",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "cheveux",
+       "fichier": "cheveux/long.png"
+      }
+     ]
+    },
+    {
+     "id": "carre",
+     "nom": "Carré frangé",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "cheveux",
+       "fichier": "cheveux/carre.png"
+      }
+     ]
+    },
+    {
+     "id": "afro",
+     "nom": "Afro bouclé",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "cheveux",
+       "fichier": "cheveux/afro.png"
+      }
+     ]
+    },
+    {
+     "id": "queue",
+     "nom": "Queue haute",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "cheveux",
+       "fichier": "cheveux/queue.png"
+      }
+     ]
+    },
+    {
+     "id": "chignon",
+     "nom": "Chignon",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "cheveux",
+       "fichier": "cheveux/chignon.png"
+      }
+     ]
+    },
+    {
+     "id": "ondule",
+     "nom": "Ondulé",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "cheveux",
+       "fichier": "cheveux/ondule.png"
+      }
+     ]
+    }
+   ]
+  },
+  "haut": {
+   "nom": "Haut",
+   "groupe": "tenue",
+   "variantes": [
+    {
+     "id": "tshirt",
+     "nom": "T-shirt",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "haut",
+       "fichier": "haut/tshirt.png"
+      }
+     ],
+     "styles": [
+      "plage",
+      "quotidien",
+      "sport"
+     ]
+    },
+    {
+     "id": "debardeur",
+     "nom": "Débardeur",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "haut",
+       "fichier": "haut/debardeur.png"
+      }
+     ],
+     "styles": [
+      "plage",
+      "sport"
+     ]
+    },
+    {
+     "id": "chemise",
+     "nom": "Chemise",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "haut",
+       "fichier": "haut/chemise.png"
+      }
+     ],
+     "styles": [
+      "quotidien",
+      "chic",
+      "plage"
+     ]
+    },
+    {
+     "id": "pull",
+     "nom": "Pull",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "haut",
+       "fichier": "haut/pull.png"
+      }
+     ],
+     "styles": [
+      "quotidien",
+      "chic"
+     ]
+    },
+    {
+     "id": "bikini",
+     "nom": "Haut de maillot",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "haut",
+       "fichier": "haut/bikini.png"
+      }
+     ],
+     "styles": [
+      "plage"
+     ]
+    },
+    {
+     "id": "robe",
+     "nom": "Robe d'été",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "haut",
+       "fichier": "haut/robe.png"
+      }
+     ],
+     "styles": [
+      "plage",
+      "chic",
+      "quotidien"
+     ],
+     "masque": [
+      "bas"
+     ]
+    },
+    {
+     "id": "sweat",
+     "nom": "Sweat zippé",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "haut",
+       "fichier": "haut/sweat.png"
+      }
+     ],
+     "styles": [
+      "quotidien",
+      "sport"
+     ]
+    },
+    {
+     "id": "polo",
+     "nom": "Polo",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "haut",
+       "fichier": "haut/polo.png"
+      }
+     ],
+     "styles": [
+      "quotidien",
+      "chic",
+      "sport"
+     ]
+    },
+    {
+     "id": "blouse",
+     "nom": "Blouse",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "haut",
+       "fichier": "haut/blouse.png"
+      }
+     ],
+     "styles": [
+      "chic",
+      "quotidien"
+     ]
+    }
+   ]
+  },
+  "bas": {
+   "nom": "Bas",
+   "groupe": "tenue",
+   "variantes": [
+    {
+     "id": "short",
+     "nom": "Short",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "bas",
+       "fichier": "bas/short.png"
+      }
+     ],
+     "styles": [
+      "plage",
+      "quotidien",
+      "sport"
+     ]
+    },
+    {
+     "id": "bermuda",
+     "nom": "Bermuda",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "bas",
+       "fichier": "bas/bermuda.png"
+      }
+     ],
+     "styles": [
+      "plage",
+      "quotidien",
+      "chic"
+     ]
+    },
+    {
+     "id": "pantalon",
+     "nom": "Pantalon",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "bas",
+       "fichier": "bas/pantalon.png"
+      }
+     ],
+     "styles": [
+      "quotidien",
+      "chic"
+     ]
+    },
+    {
+     "id": "jean",
+     "nom": "Jean",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "bas",
+       "fichier": "bas/jean.png"
+      }
+     ],
+     "styles": [
+      "quotidien"
+     ]
+    },
+    {
+     "id": "mini-jupe",
+     "nom": "Mini-jupe",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "bas",
+       "fichier": "bas/mini-jupe.png"
+      }
+     ],
+     "styles": [
+      "plage",
+      "quotidien",
+      "chic"
+     ]
+    },
+    {
+     "id": "jupe-longue",
+     "nom": "Jupe longue",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "bas",
+       "fichier": "bas/jupe-longue.png"
+      }
+     ],
+     "styles": [
+      "chic",
+      "plage"
+     ]
+    },
+    {
+     "id": "short-bain",
+     "nom": "Short de bain",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "bas",
+       "fichier": "bas/short-bain.png"
+      }
+     ],
+     "styles": [
+      "plage",
+      "sport"
+     ]
+    },
+    {
+     "id": "bas-maillot",
+     "nom": "Bas de maillot",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "bas",
+       "fichier": "bas/bas-maillot.png"
+      }
+     ],
+     "styles": [
+      "plage"
+     ]
+    },
+    {
+     "id": "legging",
+     "nom": "Legging",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "bas",
+       "fichier": "bas/legging.png"
+      }
+     ],
+     "styles": [
+      "sport",
+      "quotidien"
+     ]
+    }
+   ]
+  },
+  "chaussures": {
+   "nom": "Chaussures",
+   "groupe": "tenue",
+   "variantes": [
+    {
+     "id": "tongs",
+     "nom": "Tongs",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chaussures",
+       "fichier": "chaussures/tongs.png"
+      }
+     ],
+     "styles": [
+      "plage"
+     ]
+    },
+    {
+     "id": "sandales",
+     "nom": "Sandales",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chaussures",
+       "fichier": "chaussures/sandales.png"
+      }
+     ],
+     "styles": [
+      "plage",
+      "quotidien"
+     ]
+    },
+    {
+     "id": "baskets",
+     "nom": "Baskets blanches",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chaussures",
+       "fichier": "chaussures/baskets.png"
+      }
+     ],
+     "styles": [
+      "quotidien",
+      "sport",
+      "chic"
+     ]
+    },
+    {
+     "id": "bottines",
+     "nom": "Bottines",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chaussures",
+       "fichier": "chaussures/bottines.png"
+      }
+     ],
+     "styles": [
+      "quotidien",
+      "chic"
+     ]
+    },
+    {
+     "id": "mocassins",
+     "nom": "Mocassins",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chaussures",
+       "fichier": "chaussures/mocassins.png"
+      }
+     ],
+     "styles": [
+      "chic",
+      "quotidien"
+     ]
+    },
+    {
+     "id": "hautes",
+     "nom": "Baskets montantes",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chaussures",
+       "fichier": "chaussures/hautes.png"
+      }
+     ],
+     "styles": [
+      "quotidien",
+      "sport"
+     ]
+    },
+    {
+     "id": "espadrilles",
+     "nom": "Espadrilles",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chaussures",
+       "fichier": "chaussures/espadrilles.png"
+      }
+     ],
+     "styles": [
+      "plage",
+      "quotidien"
+     ]
+    },
+    {
+     "id": "ballerines",
+     "nom": "Ballerines",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chaussures",
+       "fichier": "chaussures/ballerines.png"
+      }
+     ],
+     "styles": [
+      "chic",
+      "quotidien"
+     ]
+    },
+    {
+     "id": "running",
+     "nom": "Running",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chaussures",
+       "fichier": "chaussures/running.png"
+      }
+     ],
+     "styles": [
+      "sport"
+     ]
+    }
+   ]
+  },
+  "chapeau": {
+   "nom": "Chapeau",
+   "groupe": "tenue",
+   "variantes": [
+    {
+     "id": "aucun",
+     "nom": "Aucun",
+     "genre": "*",
+     "styles": [
+      "plage",
+      "quotidien",
+      "sport",
+      "chic"
+     ],
+     "calques": []
+    },
+    {
+     "id": "casquette",
+     "nom": "Casquette",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chapeau",
+       "fichier": "chapeau/casquette.png"
+      }
+     ],
+     "styles": [
+      "quotidien",
+      "sport",
+      "plage"
+     ]
+    },
+    {
+     "id": "paille",
+     "nom": "Chapeau de paille",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chapeau",
+       "fichier": "chapeau/paille.png"
+      }
+     ],
+     "styles": [
+      "plage"
+     ]
+    },
+    {
+     "id": "bob",
+     "nom": "Bob",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chapeau",
+       "fichier": "chapeau/bob.png"
+      }
+     ],
+     "styles": [
+      "plage",
+      "quotidien"
+     ]
+    },
+    {
+     "id": "bonnet",
+     "nom": "Bonnet",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chapeau",
+       "fichier": "chapeau/bonnet.png"
+      }
+     ],
+     "styles": [
+      "quotidien"
+     ]
+    },
+    {
+     "id": "visiere",
+     "nom": "Visière",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chapeau",
+       "fichier": "chapeau/visiere.png"
+      }
+     ],
+     "styles": [
+      "plage",
+      "sport"
+     ]
+    },
+    {
+     "id": "capeline",
+     "nom": "Capeline",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chapeau",
+       "fichier": "chapeau/capeline.png"
+      }
+     ],
+     "styles": [
+      "plage",
+      "chic"
+     ]
+    },
+    {
+     "id": "feutre",
+     "nom": "Feutre",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chapeau",
+       "fichier": "chapeau/feutre.png"
+      }
+     ],
+     "styles": [
+      "chic",
+      "quotidien"
+     ]
+    },
+    {
+     "id": "bandana",
+     "nom": "Bandana",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chapeau",
+       "fichier": "chapeau/bandana.png"
+      }
+     ],
+     "styles": [
+      "plage",
+      "quotidien"
+     ]
+    },
+    {
+     "id": "snapback",
+     "nom": "Casquette plate",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "chapeau",
+       "fichier": "chapeau/snapback.png"
+      }
+     ],
+     "styles": [
+      "quotidien",
+      "sport"
+     ]
+    }
+   ]
+  },
+  "lunettes": {
+   "nom": "Lunettes",
+   "groupe": "tenue",
+   "variantes": [
+    {
+     "id": "aucun",
+     "nom": "Aucune",
+     "genre": "*",
+     "styles": [
+      "plage",
+      "quotidien",
+      "sport",
+      "chic"
+     ],
+     "calques": []
+    },
+    {
+     "id": "aviateur",
+     "nom": "Aviateur",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "lunettes",
+       "fichier": "lunettes/aviateur.png"
+      }
+     ],
+     "styles": [
+      "plage",
+      "quotidien"
+     ]
+    },
+    {
+     "id": "rondes-fines",
+     "nom": "Rondes fines",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "lunettes",
+       "fichier": "lunettes/rondes-fines.png"
+      }
+     ],
+     "styles": [
+      "quotidien",
+      "chic"
+     ]
+    },
+    {
+     "id": "carrees",
+     "nom": "Carrées épaisses",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "lunettes",
+       "fichier": "lunettes/carrees.png"
+      }
+     ],
+     "styles": [
+      "quotidien"
+     ]
+    },
+    {
+     "id": "oeil-de-chat",
+     "nom": "Œil de chat",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "lunettes",
+       "fichier": "lunettes/oeil-de-chat.png"
+      }
+     ],
+     "styles": [
+      "chic",
+      "plage"
+     ]
+    },
+    {
+     "id": "sport",
+     "nom": "Sport",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "lunettes",
+       "fichier": "lunettes/sport.png"
+      }
+     ],
+     "styles": [
+      "sport",
+      "plage"
+     ]
+    },
+    {
+     "id": "sans-monture",
+     "nom": "Sans monture",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "lunettes",
+       "fichier": "lunettes/sans-monture.png"
+      }
+     ],
+     "styles": [
+      "chic",
+      "quotidien"
+     ]
+    },
+    {
+     "id": "grosses-rondes",
+     "nom": "Grosses rondes",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "lunettes",
+       "fichier": "lunettes/grosses-rondes.png"
+      }
+     ],
+     "styles": [
+      "plage",
+      "chic"
+     ]
+    },
+    {
+     "id": "ovales",
+     "nom": "Ovales",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "lunettes",
+       "fichier": "lunettes/ovales.png"
+      }
+     ],
+     "styles": [
+      "plage"
+     ]
+    },
+    {
+     "id": "rectangulaires",
+     "nom": "Rectangulaires",
+     "genre": "*",
+     "calques": [
+      {
+       "z": "lunettes",
+       "fichier": "lunettes/rectangulaires.png"
+      }
+     ],
+     "styles": [
+      "quotidien",
+      "chic"
+     ]
+    }
+   ]
+  },
+  "corps": {
+   "nom": "Corps",
+   "groupe": "corps",
+   "variantes": [
+    {
+     "id": "fine",
+     "nom": "Fine",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "corps",
+       "fichier": "corps/fine.png"
+      }
+     ],
+     "gabarit": "mince"
+    },
+    {
+     "id": "moyenne",
+     "nom": "Moyenne",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "corps",
+       "fichier": "corps/moyenne.png"
+      }
+     ],
+     "gabarit": "moyen"
+    },
+    {
+     "id": "courbes",
+     "nom": "Courbes",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "corps",
+       "fichier": "corps/courbes.png"
+      }
+     ],
+     "gabarit": "moyen"
+    },
+    {
+     "id": "forte",
+     "nom": "Forte",
+     "genre": "f",
+     "calques": [
+      {
+       "z": "corps",
+       "fichier": "corps/forte.png"
+      }
+     ],
+     "gabarit": "rond"
+    },
+    {
+     "id": "mince-h",
+     "nom": "Mince",
+     "genre": "h",
+     "calques": [
+      {
+       "z": "corps",
+       "fichier": "corps/mince-h.png"
+      }
+     ],
+     "gabarit": "mince"
+    },
+    {
+     "id": "moyen-h",
+     "nom": "Moyen",
+     "genre": "h",
+     "calques": [
+      {
+       "z": "corps",
+       "fichier": "corps/moyen-h.png"
+      }
+     ],
+     "gabarit": "moyen"
+    },
+    {
+     "id": "athletique",
+     "nom": "Athlétique",
+     "genre": "h",
+     "calques": [
+      {
+       "z": "corps",
+       "fichier": "corps/athletique.png"
+      }
+     ],
+     "gabarit": "muscle"
+    },
+    {
+     "id": "rond-h",
+     "nom": "Rond",
+     "genre": "h",
+     "calques": [
+      {
+       "z": "corps",
+       "fichier": "corps/rond-h.png"
+      }
+     ],
+     "gabarit": "rond"
+    }
+   ]
+  }
+ },
+ "palettes": {
+  "peau": [
+   "#fbe0cc",
+   "#f5cba7",
+   "#e8b48a",
+   "#d39a6b",
+   "#b9794a",
+   "#8d5a3b",
+   "#6b4128",
+   "#4a2c1b"
+  ],
+  "cheveux": [
+   [
+    "noir",
+    "#1e1a1a"
+   ],
+   [
+    "brun",
+    "#4a3020"
+   ],
+   [
+    "châtain",
+    "#7a5233"
+   ],
+   [
+    "blond",
+    "#d9b36c"
+   ],
+   [
+    "platine",
+    "#efe0a8"
+   ],
+   [
+    "roux",
+    "#b5502a"
+   ],
+   [
+    "gris",
+    "#9a9a9e"
+   ],
+   [
+    "blanc",
+    "#e8e8ea"
+   ],
+   [
+    "rose",
+    "#e75a9a"
+   ],
+   [
+    "bleu",
+    "#3b7fd9"
+   ]
+  ],
+  "iris": [
+   [
+    "marron",
+    "#6b4423"
+   ]
+  ],
+  "levres": [
+   "#d9606b"
+  ],
+  "vetements": [
+   "#ff6f61",
+   "#ffd23f",
+   "#1fb5c4",
+   "#1f3a6b",
+   "#f4f4f2",
+   "#26262b",
+   "#3aa05b",
+   "#ff8fb3",
+   "#ff9442",
+   "#7a56c9",
+   "#8a8f5a",
+   "#d9383a"
+  ]
+ }
+}

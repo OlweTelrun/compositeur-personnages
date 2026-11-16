@@ -1,0 +1,5 @@
+node_modules/
+.DS_Store
+.claude/settings.local.json
+# exports de sprites générés (régénérables, 45 Mo)
+prototype/sortie/

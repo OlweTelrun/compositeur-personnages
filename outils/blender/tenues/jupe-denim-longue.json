@@ -1,0 +1,17 @@
+[
+ {
+  "type": "tshirt",
+  "matiere": "/Users/jeremy/Antigravity/compositeurPersonnages/prototype/public/matieres/tissu-vichy.png",
+  "teintable": false,
+  "tuile": 0.5
+ },
+ {
+  "type": "jupe",
+  "matiere": "/Users/jeremy/Antigravity/compositeurPersonnages/prototype/public/matieres/tissu-denim.png",
+  "couleur": "#4a6fa8",
+  "teintable": true,
+  "tuile": 0.25,
+  "longueur": 1.25,
+  "evasement": 0.16
+ }
+]

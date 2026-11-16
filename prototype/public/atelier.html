@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier de personnages</title>
+<style>
+  :root {
+    --fond: #f3efe8; --carte: #fffdf9; --encre: #2b2622; --doux: #7a7068; --trait: #e3dbcf;
+    --accent: #e8643c; --accent-encre: #fff; --ok: #2f8f6b; --rayon: 12px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --fond: #1c1a18; --carte: #26231f; --encre: #f1ece4; --doux: #a89e92; --trait: #3a352f; --accent: #f0794f; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fond); color: var(--encre); font: 15px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header { padding: 14px 20px 0; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  h1 { font-size: 20px; margin: 0; }
+  header p { margin: 0; color: var(--doux); font-size: 13px; }
+  main { display: grid; grid-template-columns: minmax(300px, 440px) 1fr; gap: 18px; padding: 14px 20px 30px; align-items: start; }
+  @media (max-width: 860px) { main { grid-template-columns: 1fr; } }
+  .carte { background: var(--carte); border: 1px solid var(--trait); border-radius: var(--rayon); padding: 14px; }
+  .carte h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--doux); margin: 0 0 10px; font-weight: 600; }
+  .scene { position: sticky; top: 10px; }
+  .toile { background: repeating-conic-gradient(rgba(128,120,110,.12) 0 25%, transparent 0 50%) 0 0 / 22px 22px; border-radius: 8px; display: flex; justify-content: center; }
+  #vue { width: auto; height: min(74vh, 640px); max-width: 100%; aspect-ratio: 520 / 900; }
+  button, select, input[type=color] { font: inherit; color: inherit; }
+  button { background: var(--carte); border: 1px solid var(--trait); border-radius: 8px; padding: 6px 11px; cursor: pointer; }
+  button:hover { border-color: var(--accent); }
+  button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  button.primaire { background: var(--accent); color: var(--accent-encre); border-color: var(--accent); font-weight: 600; }
+  .rang { display: flex; flex-wrap: wrap; gap: 6px; }
+  .rang + .rang, .groupe + .groupe { margin-top: 10px; }
+  .etiquette { font-size: 12px; color: var(--doux); margin: 0 0 4px; }
+  .seg button { border-radius: 0; margin-left: -1px; padding: 5px 10px; }
+  .seg button:first-child { border-radius: 8px 0 0 8px; margin-left: 0; }
+  .seg button:last-child { border-radius: 0 8px 8px 0; }
+  .seg { display: inline-flex; }
+  .seg button[aria-pressed=true] { background: var(--encre); color: var(--carte); border-color: var(--encre); }
+  .pastille { width: 26px; height: 26px; padding: 0; border-radius: 50%; border: 2px solid var(--trait); }
+  .pastille[aria-pressed=true] { border-color: var(--encre); box-shadow: 0 0 0 2px var(--carte) inset; }
+  .pastille.hasard { background: conic-gradient(#e8643c, #f2c14e, #52b788, #4a8fe7, #b565d9, #e8643c); }
+  .piece { display: grid; grid-template-columns: 94px 28px 1fr 28px 30px 30px; gap: 5px; align-items: center; }
+  .piece + .piece { margin-top: 5px; }
+  .piece .nom { font-size: 13px; }
+  .piece button { padding: 4px 0; text-align: center; }
+  .piece select { width: 100%; min-width: 0; padding: 5px; border: 1px solid var(--trait); border-radius: 8px; background: var(--carte); }
+  .piece input[type=color] { width: 30px; height: 28px; padding: 1px; border: 1px solid var(--trait); border-radius: 8px; background: none; }
+  .piece .vide { width: 30px; }
+  .verrou[aria-pressed=true] { background: var(--accent); color: var(--accent-encre); border-color: var(--accent); }
+  .titre-groupe { font-size: 12px; color: var(--doux); margin: 12px 0 5px; }
+  .planche { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; min-height: 40px; }
+  .vignette { position: relative; border: 2px solid transparent; border-radius: 10px; background: repeating-conic-gradient(rgba(128,120,110,.12) 0 25%, transparent 0 50%) 0 0 / 14px 14px; cursor: pointer; padding: 0; }
+  .vignette[aria-current=true] { border-color: var(--accent); }
+  .vignette canvas { display: block; width: 84px; height: 145px; }
+  .vignette .retrait { position: absolute; top: 2px; right: 2px; width: 20px; height: 20px; line-height: 16px; padding: 0; border-radius: 50%; font-size: 13px; opacity: .85; }
+  .vide-planche { color: var(--doux); font-size: 13px; align-self: center; }
+  .barre { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  #etat { color: var(--doux); font-size: 12px; margin-top: 8px; min-height: 1.4em; }
+  @media (prefers-reduced-motion: no-preference) { button { transition: border-color .15s, background .15s; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Atelier de personnages</h1>
+  <p>Une base de pièces (tête, yeux, nez, bouche, sourcils, cheveux, corps, vêtements) assemblée au hasard ou à la demande. Même personne, tenues différentes.</p>
+</header>
+<main>
+  <section class="carte scene" aria-label="Aperçu">
+    <div class="toile"><canvas id="vue" width="800" height="1385" role="img" aria-label="Personnage composé"></canvas></div>
+    <div class="barre">
+      <button class="primaire" id="b-personne">Nouveau personnage</button>
+      <button id="b-tenue">Nouvelle tenue</button>
+      <button id="b-visage">Nouveau visage</button>
+      <button id="b-corps">Nouveau corps</button>
+    </div>
+    <div class="barre">
+      <button id="b-png">PNG 256×256 (cadrage du jeu)</button>
+      <button id="b-json">Copier la recette</button>
+    </div>
+    <div id="etat" role="status"></div>
+  </section>
+
+  <div>
+    <section class="carte" aria-labelledby="t-orient">
+      <h2 id="t-orient">Orienter le tirage</h2>
+      <div class="groupe"><p class="etiquette">Genre</p><div class="seg" id="o-genre"></div></div>
+      <div class="groupe"><p class="etiquette">Silhouette</p><div class="seg" id="o-gabarit"></div></div>
+      <div class="groupe"><p class="etiquette">Couleur de peau</p><div class="rang" id="o-peau"></div></div>
+      <div class="groupe"><p class="etiquette">Couleur de cheveux</p><div class="rang" id="o-cheveux"></div></div>
+      <div class="groupe"><p class="etiquette">Style de tenue</p><div class="seg" id="o-style"></div></div>
+    </section>
+
+    <section class="carte" style="margin-top:14px" aria-labelledby="t-pieces">
+      <h2 id="t-pieces">Pièces (◀ ▶ pour parcourir, cadenas = ne pas changer au tirage)</h2>
+      <div id="pieces"></div>
+    </section>
+
+    <section class="carte" style="margin-top:14px" aria-labelledby="t-planche">
+      <h2 id="t-planche">Planche de tenues — la même personne</h2>
+      <div class="barre" style="margin-top:0">
+        <button id="p-garder">＋ Garder cette tenue</button>
+        <button id="p-six">＋ 6 tenues au hasard</button>
+        <button id="p-vider">Vider</button>
+        <button id="p-png">Télécharger la planche</button>
+      </div>
+      <div class="planche" id="planche"></div>
+    </section>
+  </div>
+</main>
+<script type="module" src="js/atelier.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+{
+ "pieces": {
+  "f": {
+   "hauts": [
+    [
+     "tshirt",
+     "T-shirt"
+    ],
+    [
+     "debardeur",
+     "Débardeur"
+    ],
+    [
+     "chemise",
+     "Chemise"
+    ],
+    [
+     "pull",
+     "Pull"
+    ],
+    [
+     "bikini",
+     "Haut de maillot"
+    ],
+    [
+     "polo",
+     "Polo"
+    ],
+    [
+     "sweat",
+     "Sweat zippé"
+    ],
+    [
+     "manches-longues",
+     "Tee manches longues"
+    ]
+   ],
+   "bas": [
+    [
+     "short",
+     "Short"
+    ],
+    [
+     "bermuda",
+     "Bermuda"
+    ],
+    [
+     "pantalon",
+     "Pantalon"
+    ],
+    [
+     "jean",
+     "Jean"
+    ],
+    [
+     "mini-jupe",
+     "Mini-jupe"
+    ],
+    [
+     "jupe-longue",
+     "Jupe longue"
+    ],
+    [
+     "short-bain",
+     "Short de bain"
+    ],
+    [
+     "legging",
+     "Legging"
+    ]
+   ]
+  },
+  "h": {
+   "hauts": [
+    [
+     "tshirt",
+     "T-shirt"
+    ],
+    [
+     "debardeur",
+     "Débardeur"
+    ],
+    [
+     "chemise",
+     "Chemise"
+    ],
+    [
+     "pull",
+     "Pull"
+    ],
+    [
+     "polo",
+     "Polo"
+    ],
+    [
+     "sweat",
+     "Sweat zippé"
+    ],
+    [
+     "manches-longues",
+     "Tee manches longues"
+    ],
+    [
+     "maillot-sport",
+     "Maillot de sport"
+    ]
+   ],
+   "bas": [
+    [
+     "short",
+     "Short"
+    ],
+    [
+     "bermuda",
+     "Bermuda"
+    ],
+    [
+     "pantalon",
+     "Pantalon"
+    ],
+    [
+     "jean",
+     "Jean"
+    ],
+    [
+     "short-bain",
+     "Short de bain"
+    ],
+    [
+     "cargo",
+     "Short cargo"
+    ],
+    [
+     "jogging",
+     "Jogging"
+    ],
+    [
+     "chino",
+     "Chino"
+    ]
+   ]
+  },
+  "chaussures": [
+   [
+    "tongs",
+    "Tongs"
+   ],
+   [
+    "sandales",
+    "Sandales"
+   ],
+   [
+    "baskets",
+    "Baskets basses"
+   ],
+   [
+    "bottines",
+    "Bottines"
+   ],
+   [
+    "mocassins",
+    "Mocassins"
+   ],
+   [
+    "hautes",
+    "Baskets montantes"
+   ],
+   [
+    "espadrilles",
+    "Espadrilles"
+   ],
+   [
+    "running",
+    "Running"
+   ]
+  ]
+ },
+ "silhouettes": {
+  "moyenne": {
+   "nom": "Moyenne",
+   "genre": "f",
+   "gabarit": "20261116-105344-dkis93",
+   "hauts": "20261116-105411-g6tnef",
+   "bas": "20261116-105427-983iky",
+   "chaussures": "20261116-105444-ayghir"
+  },
+  "forte": {
+   "nom": "Forte",
+   "genre": "f",
+   "gabarit": "20261116-153102-3gjqax",
+   "hauts": "20261116-153143-zlk82t",
+   "bas": "20261116-153200-fe08bp",
+   "chaussures": "20261116-153221-40gb3y"
+  },
+  "moyen-h": {
+   "nom": "Moyen",
+   "genre": "h",
+   "gabarit": "20261116-153101-bcyw5g",
+   "hauts": "20261116-153242-y1vxpb",
+   "bas": "20261116-153306-tj28l0",
+   "chaussures": "20261116-153327-bqmv9z"
+  },
+  "athletique": {
+   "nom": "Athlétique",
+   "genre": "h",
+   "gabarit": "20261116-153101-0rk9ju",
+   "hauts": "20261116-153354-5qrbwc",
+   "bas": "20261116-153418-vr35sq",
+   "chaussures": "20261116-153915-vrfjra"
+  }
+ }
+}

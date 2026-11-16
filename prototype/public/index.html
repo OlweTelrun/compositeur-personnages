@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compositeur de personnages — prototype</title>
+<script type="importmap">{ "imports": { "three": "/vendor/three.module.min.js" } }</script>
+<style>
+  :root { --bg:#14161b; --carte:#1d2027; --bord:#2e333d; --texte:#e7e9ee; --doux:#9aa1ae; --accent:#4cc2ff; --ok:#4fd18b; --ko:#ff6b6b; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:14px/1.45 system-ui,sans-serif; background:var(--bg); color:var(--texte); }
+  header { padding:14px 20px; border-bottom:1px solid var(--bord); display:flex; gap:12px; align-items:baseline; flex-wrap:wrap; }
+  h1 { font-size:16px; margin:0; } h2 { font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--doux); margin:0 0 10px; }
+  .sous { color:var(--doux); font-size:12px; }
+  main { display:grid; grid-template-columns:300px 1fr; gap:16px; padding:16px 20px; }
+  @media (max-width:860px) { main { grid-template-columns:1fr; } }
+  section { background:var(--carte); border:1px solid var(--bord); border-radius:10px; padding:14px; margin-bottom:16px; }
+  label { display:grid; grid-template-columns:110px 1fr; align-items:center; gap:8px; margin:6px 0; color:var(--doux); }
+  select,input,textarea,button { font:inherit; color:var(--texte); background:#12141a; border:1px solid var(--bord); border-radius:6px; padding:5px 8px; }
+  input[type=color] { padding:0; height:28px; width:100%; } input[type=range] { padding:0; }
+  button { cursor:pointer; background:#262b35; } button:hover { border-color:var(--accent); }
+  button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible { outline:2px solid var(--accent); outline-offset:1px; }
+  .duo { display:flex; gap:18px; flex-wrap:wrap; }
+  .vue { text-align:center; color:var(--doux); font-size:12px; }
+  .damier { background:conic-gradient(#2a2e38 25%,#23262e 0 50%,#2a2e38 0 75%,#23262e 0) 0 0/16px 16px; border-radius:6px; display:inline-block; }
+  canvas { display:block; }
+  .reel { height:40px; width:40px; } .moyen { height:128px; width:128px; }
+  .planche { display:grid; grid-template-columns:auto repeat(var(--nt,3),1fr); gap:8px 14px; align-items:center; }
+  .planche .cell { display:flex; gap:6px; align-items:flex-end; }
+  .controle { display:flex; gap:8px; margin:4px 0; align-items:baseline; }
+  .ok { color:var(--ok); } .ko { color:var(--ko); }
+  textarea { width:100%; height:200px; font:12px ui-monospace,monospace; }
+  .rangee { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Compositeur de personnages</h1>
+  <span class="sous">Prototype jetable — kit « beachlife-v0 », formes procédurales : on valide le contrat et la chaîne, pas le style.</span>
+</header>
+<main>
+  <div>
+    <section aria-labelledby="t-id">
+      <h2 id="t-id">Identité physique</h2>
+      <label>Morphologie <select id="morpho"></select></label>
+      <label>Stature <input id="stature" type="range" step="0.01"></label>
+      <label>Visage <select id="visage"></select></label>
+      <label>Teint <input id="teint" type="color"></label>
+      <label>Cheveux <select id="cheveux"></select></label>
+      <label>Couleur cheveux <input id="cheveuxCouleur" type="color"></label>
+    </section>
+    <section aria-labelledby="t-corps">
+      <h2 id="t-corps">Corps (paramètres fins)</h2>
+      <p class="sous">Macros : bouger l'un d'eux définit tout le corps (adulte moyen quand tout est neutre, différent des préréglages). Les curseurs fins priment ensuite sur les macros. Changer de préréglage réinitialise.</p>
+      <div id="macroCurseurs"></div>
+      <p id="msgLien" class="sous" role="status"></p>
+      <div id="corpsCurseurs"></div>
+      <button id="corpsAlea">Corps aléatoire</button> <button id="corpsReset">Revenir au préréglage</button>
+    </section>
+    <section aria-labelledby="t-app">
+      <h2 id="t-app">Apparence (valise)</h2>
+      <label>Tenue <select id="tenue"></select></label>
+      <label>Pose <select id="pose"></select></label>
+      <label>Haut : corps <input id="hautCorps" type="color"></label>
+      <label>Motif <select id="motif"></select></label>
+      <label>Emplacement <select id="empl"></select></label>
+      <label>Couleur motif <input id="motifCouleur" type="color"></label>
+      <label>Sous-vêtements <input id="sousvet" type="checkbox"></label>
+    </section>
+  </div>
+  <div>
+    <section aria-labelledby="t-apercu">
+      <h2 id="t-apercu">Aperçu — mêmes recette et géométrie, deux rendus</h2>
+      <div class="duo">
+        <div class="vue"><div class="damier"><canvas id="c2d" width="256" height="256"></canvas></div>2D par couches · 256 px</div>
+        <div class="vue"><div class="damier"><canvas id="c3d" width="256" height="256"></canvas></div>3D (three.js) · 256 px</div>
+        <div class="vue">
+          <div id="reel" style="display:flex;gap:10px;align-items:flex-end;min-height:128px"></div>
+          Taille jeu : 40 px de haut (2D, 3D) — et ×3
+        </div>
+      </div>
+      <div class="rangee" role="group" aria-label="Rotation du rendu 3D">
+        <label>Rotation 3D <input id="azimut" type="range" min="-180" max="180" step="5" value="0"> <output id="azimutVal" for="azimut">0°</output></label>
+        <button data-az="0">Face</button><button data-az="45">¾</button><button data-az="90">Profil</button><button data-az="180">Dos</button>
+      </div>
+      <div class="rangee">
+        <button id="png2d">Exporter PNG 2D</button><button id="png3d">Exporter PNG 3D</button>
+      </div>
+    </section>
+    <section aria-labelledby="t-planche">
+      <h2 id="t-planche">Planche de contrôle : 3 morphologies × toutes les tenues (2D | 3D, taille jeu)</h2>
+      <div class="planche" id="planche"></div>
+    </section>
+    <section aria-labelledby="t-ctl">
+      <h2 id="t-ctl">Contrôles automatiques</h2>
+      <div id="controles"></div>
+      <div class="rangee"><button id="manquante">Simuler une pièce retirée du catalogue</button><button id="rejouer">Relancer les contrôles</button></div>
+      <div id="msgManquante" class="sous" role="status"></div>
+    </section>
+    <section aria-labelledby="t-rec">
+      <h2 id="t-rec">Recette (JSON versionné)</h2>
+      <textarea id="json" spellcheck="false" aria-label="Recette JSON"></textarea>
+      <div class="rangee"><button id="appliquer">Appliquer le JSON</button><span id="msgJson" class="sous" role="status"></span></div>
+    </section>
+  </div>
+</main>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

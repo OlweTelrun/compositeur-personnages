@@ -1,0 +1,16 @@
+[
+ {
+  "type": "chemise",
+  "couleur": "#f4f1ea",
+  "matiere": "/Users/jeremy/Antigravity/compositeurPersonnages/prototype/public/matieres/tissu-lin.png",
+  "teintable": true,
+  "tuile": 0.25
+ },
+ {
+  "type": "short_large",
+  "couleur": "#d8c28a",
+  "matiere": "/Users/jeremy/Antigravity/compositeurPersonnages/prototype/public/matieres/tissu-lin.png",
+  "teintable": true,
+  "tuile": 0.25
+ }
+]

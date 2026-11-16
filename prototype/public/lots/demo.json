@@ -1,0 +1,11 @@
+{
+  "segment": "demo",
+  "items": [
+    { "visage": "image.roux@1", "morphologie": "fine" },
+    { "visage": "image.mix@1", "morphologie": "ronde" },
+    { "visage": "image.aine@1", "morphologie": "trapue" },
+    { "visage": "image.homme@1", "morphologie": "ronde" },
+    { "visage": "image.roux@1", "morphologie": "ronde", "teint": "#8a5a3c" },
+    { "visage": "image.mix@1", "morphologie": "fine", "tenue": "soiree" }
+  ]
+}

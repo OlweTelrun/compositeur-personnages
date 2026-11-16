@@ -1,0 +1,201 @@
+{
+ "schema": "corps/1",
+ "note": "Corps de base riggés (Meshy, squelette commun de 24 os), tenue grise neutre, A-pose. Les fichiers restent dans la bibliothèque du générateur d'images (chemins absolus de cette machine). `rig` = personnage riggé ; `marche`/`course` = animations du MÊME squelette, applicables à n'importe quel corps. `taille_m` = taille de conception choisie à l'œil (non mesurée) ; `echelle` = taille_m / 1,70 : Meshy normalise tous les corps à ~1,70 m, il faut donc l'appliquer au rendu (--echelle). `ajustement` (facultatif) = surcharges des paramètres de vêtement pour ce corps (ex. longueur de short d'un enfant). `visage` = hauteurs ABSOLUES (m, corps de 1,70 m non mis à l'échelle) de la bouche et des yeux, LUES à la règle graduée sur un gros plan de face (outils/blender, 9 nov. 2026) : la détection par texture se trompait sur 4 corps sur 10 (nez ou cils pris pour la bouche).",
+ "corps": [
+  {
+   "id": "femme-ronde",
+   "nom": "Femme ronde (corps historique du §8)",
+   "age": "adulte",
+   "morphologie": "ronde",
+   "genre": "f",
+   "element_riggé": "20261103-204538-hro7e0",
+   "element_mesh": "20261103-204517-u5ns4y",
+   "element_image": "20261103-170513-xog5ts",
+   "rig": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261103-204538-hro7e0-full-body-standing-front-view-a-round-heavyset-rigge.glb",
+   "course": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261103-204538-hro7e0-full-body-standing-front-view-a-round-heavyset-rigge-1.glb",
+   "marche": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261103-204538-hro7e0-full-body-standing-front-view-a-round-heavyset-rigge-2.glb",
+   "taille_m": 1.65,
+   "echelle": 0.971,
+   "visage": {
+    "z_bouche": 1.468,
+    "z_oeil": 1.548
+   }
+  },
+  {
+   "id": "homme-mince",
+   "nom": "Homme mince, grand",
+   "age": "adulte",
+   "morphologie": "fine",
+   "genre": "m",
+   "element_riggé": "20261107-161928-ul6y41",
+   "element_mesh": "20261107-161909-lgsdug",
+   "element_image": "20261107-161815-80ww8z",
+   "rig": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261107-161928-ul6y41-full-body-standing-front-view-in-a-neutral-rigge.glb",
+   "course": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261107-161928-ul6y41-full-body-standing-front-view-in-a-neutral-rigge-1.glb",
+   "marche": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261107-161928-ul6y41-full-body-standing-front-view-in-a-neutral-rigge-2.glb",
+   "taille_m": 1.85,
+   "echelle": 1.088,
+   "visage": {
+    "z_bouche": 1.522,
+    "z_oeil": 1.587
+   }
+  },
+  {
+   "id": "homme-trapu",
+   "nom": "Homme petit, trapu, épaules larges",
+   "age": "adulte",
+   "morphologie": "trapue",
+   "genre": "m",
+   "element_riggé": "20261108-153918-4ggwii",
+   "element_mesh": "20261108-153859-c2zzyu",
+   "element_image": "20261108-153654-cfsxcp",
+   "rig": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-153918-4ggwii-full-body-standing-front-view-in-a-neutral-rigge.glb",
+   "course": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-153918-4ggwii-full-body-standing-front-view-in-a-neutral-rigge-1.glb",
+   "marche": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-153918-4ggwii-full-body-standing-front-view-in-a-neutral-rigge-2.glb",
+   "taille_m": 1.62,
+   "echelle": 0.953,
+   "visage": {
+    "z_bouche": 1.508,
+    "z_oeil": 1.575
+   }
+  },
+  {
+   "id": "femme-moyenne",
+   "nom": "Femme de corpulence moyenne",
+   "age": "adulte",
+   "morphologie": "moyenne",
+   "genre": "f",
+   "element_riggé": "20261108-154000-bokxdl",
+   "element_mesh": "20261108-153938-l79rby",
+   "element_image": "20261108-153703-m3ykwy",
+   "rig": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-154000-bokxdl-full-body-standing-front-view-in-a-neutral-rigge.glb",
+   "course": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-154000-bokxdl-full-body-standing-front-view-in-a-neutral-rigge-1.glb",
+   "marche": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-154000-bokxdl-full-body-standing-front-view-in-a-neutral-rigge-2.glb",
+   "taille_m": 1.65,
+   "echelle": 0.971,
+   "visage": {
+    "z_bouche": 1.495,
+    "z_oeil": 1.56
+   }
+  },
+  {
+   "id": "femme-senior",
+   "nom": "Femme senior, corpulence douce",
+   "age": "senior",
+   "morphologie": "ronde",
+   "genre": "f",
+   "element_riggé": "20261108-154042-udzhsz",
+   "element_mesh": "20261108-154021-92wyol",
+   "element_image": "20261108-153724-1ftzy3",
+   "rig": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-154042-udzhsz-full-body-standing-front-view-in-a-neutral-rigge.glb",
+   "course": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-154042-udzhsz-full-body-standing-front-view-in-a-neutral-rigge-1.glb",
+   "marche": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-154042-udzhsz-full-body-standing-front-view-in-a-neutral-rigge-2.glb",
+   "taille_m": 1.55,
+   "echelle": 0.912,
+   "visage": {
+    "z_bouche": 1.45,
+    "z_oeil": 1.531
+   }
+  },
+  {
+   "id": "garcon",
+   "nom": "Garçon d'environ 8 ans",
+   "age": "enfant",
+   "morphologie": "fine",
+   "genre": "m",
+   "element_riggé": "20261108-154203-4t0dk7",
+   "element_mesh": "20261108-154137-d7ul8v",
+   "element_image": "20261108-153736-sk815u",
+   "rig": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-154203-4t0dk7-full-body-standing-front-view-in-a-neutral-rigge.glb",
+   "course": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-154203-4t0dk7-full-body-standing-front-view-in-a-neutral-rigge-1.glb",
+   "marche": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-154203-4t0dk7-full-body-standing-front-view-in-a-neutral-rigge-2.glb",
+   "taille_m": 1.25,
+   "echelle": 0.735,
+   "ajustement": {
+    "shorts": {
+     "longueur": 0.32
+    }
+   },
+   "visage": {
+    "z_bouche": 1.403,
+    "z_oeil": 1.486
+   }
+  },
+  {
+   "id": "femme-mince",
+   "nom": "Femme mince, cheveux longs attachés",
+   "age": "adulte",
+   "morphologie": "fine",
+   "genre": "f",
+   "element_riggé": "20261108-162808-0m93n6",
+   "element_mesh": "20261108-162745-j0ayje",
+   "element_image": "20261108-153653-tzubuz",
+   "rig": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-162808-0m93n6-full-body-standing-front-view-in-a-neutral-rigge.glb",
+   "course": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-162808-0m93n6-full-body-standing-front-view-in-a-neutral-rigge-1.glb",
+   "marche": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-162808-0m93n6-full-body-standing-front-view-in-a-neutral-rigge-2.glb",
+   "taille_m": 1.68,
+   "echelle": 0.988,
+   "visage": {
+    "z_bouche": 1.506,
+    "z_oeil": 1.572
+   }
+  },
+  {
+   "id": "homme-rond",
+   "nom": "Homme rond, ventre prononcé",
+   "age": "adulte",
+   "morphologie": "ronde",
+   "genre": "m",
+   "element_riggé": "20261108-162816-l18xc5",
+   "element_mesh": "20261108-162754-mnya6y",
+   "element_image": "20261108-153705-vrjy0p",
+   "rig": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-162816-l18xc5-full-body-standing-front-view-in-a-neutral-rigge.glb",
+   "course": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-162816-l18xc5-full-body-standing-front-view-in-a-neutral-rigge-1.glb",
+   "marche": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-162816-l18xc5-full-body-standing-front-view-in-a-neutral-rigge-2.glb",
+   "taille_m": 1.72,
+   "echelle": 1.012,
+   "visage": {
+    "z_bouche": 1.482,
+    "z_oeil": 1.567
+   }
+  },
+  {
+   "id": "homme-senior",
+   "nom": "Homme senior mince, cheveux blancs clairsemés",
+   "age": "senior",
+   "morphologie": "fine",
+   "genre": "m",
+   "element_riggé": "20261108-162750-xsmdgx",
+   "element_mesh": "20261108-162729-mwzhvw",
+   "element_image": "20261108-153723-dbgd7a",
+   "rig": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-162750-xsmdgx-full-body-standing-front-view-in-a-neutral-rigge.glb",
+   "course": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-162750-xsmdgx-full-body-standing-front-view-in-a-neutral-rigge-1.glb",
+   "marche": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-162750-xsmdgx-full-body-standing-front-view-in-a-neutral-rigge-2.glb",
+   "taille_m": 1.7,
+   "echelle": 1.0,
+   "visage": {
+    "z_bouche": 1.475,
+    "z_oeil": 1.57
+   }
+  },
+  {
+   "id": "femme-athletique",
+   "nom": "Femme grande, athlétique, queue de cheval",
+   "age": "adulte",
+   "morphologie": "fine",
+   "genre": "f",
+   "element_riggé": "20261108-162759-bxwq7n",
+   "element_mesh": "20261108-162740-9ngc6r",
+   "element_image": "20261108-153735-5lmj1e",
+   "rig": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-162759-bxwq7n-full-body-standing-front-view-in-a-neutral-rigge.glb",
+   "course": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-162759-bxwq7n-full-body-standing-front-view-in-a-neutral-rigge-1.glb",
+   "marche": "/Users/jeremy/Antigravity/bibliotheque/fichiers/mesh/2026-11/20261108-162759-bxwq7n-full-body-standing-front-view-in-a-neutral-rigge-2.glb",
+   "taille_m": 1.78,
+   "echelle": 1.047,
+   "visage": {
+    "z_bouche": 1.488,
+    "z_oeil": 1.553
+   }
+  }
+ ]
+}

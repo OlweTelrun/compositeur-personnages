@@ -1,0 +1,547 @@
+{
+ "yeux": {
+  "element": "20261116-093053-22zlal",
+  "cols": 3,
+  "rows": 3,
+  "pieces": [
+   [
+    "ronds-marron",
+    "Ronds marron"
+   ],
+   [
+    "amande-verts",
+    "Amande verts"
+   ],
+   [
+    "paupieres-lourdes",
+    "Paupières lourdes"
+   ],
+   [
+    "chat-bleus",
+    "En chat bleus"
+   ],
+   [
+    "petits-gris",
+    "Petits gris"
+   ],
+   [
+    "noisette",
+    "Noisette"
+   ],
+   [
+    "mi-clos-bleus",
+    "Mi-clos bleus"
+   ],
+   [
+    "grands-cils",
+    "Grands cils"
+   ],
+   [
+    "ambre",
+    "Ambre"
+   ]
+  ]
+ },
+ "sourcils": {
+  "element": "20261116-093053-tgujqg",
+  "cols": 3,
+  "rows": 3,
+  "pieces": [
+   [
+    "arques",
+    "Arqués"
+   ],
+   [
+    "droits",
+    "Droits"
+   ],
+   [
+    "touffus",
+    "Touffus"
+   ],
+   [
+    "fins",
+    "Fins"
+   ],
+   [
+    "tristes",
+    "Tristes"
+   ],
+   [
+    "fâches",
+    "Fâchés"
+   ],
+   [
+    "courts",
+    "Courts"
+   ],
+   [
+    "arques-longs",
+    "Arqués longs"
+   ],
+   [
+    "courbes",
+    "Courbes"
+   ]
+  ]
+ },
+ "nez": {
+  "element": "20261116-093052-ztxosp",
+  "cols": 3,
+  "rows": 3,
+  "pieces": [
+   [
+    "petit",
+    "Petit"
+   ],
+   [
+    "pointu",
+    "Pointu"
+   ],
+   [
+    "large",
+    "Large"
+   ],
+   [
+    "retrousse",
+    "Retroussé"
+   ],
+   [
+    "bouton",
+    "Bouton"
+   ],
+   [
+    "long",
+    "Long"
+   ],
+   [
+    "arrondi",
+    "Arrondi"
+   ],
+   [
+    "plat",
+    "Plat"
+   ],
+   [
+    "fort",
+    "Fort"
+   ]
+  ]
+ },
+ "bouche": {
+  "element": "20261116-093103-et8bn3",
+  "cols": 3,
+  "rows": 3,
+  "pieces": [
+   [
+    "sourire",
+    "Sourire"
+   ],
+   [
+    "grand-sourire",
+    "Grand sourire"
+   ],
+   [
+    "neutre",
+    "Neutre"
+   ],
+   [
+    "fine",
+    "Fine"
+   ],
+   [
+    "pulpeuse",
+    "Pulpeuse"
+   ],
+   [
+    "moue",
+    "Moue"
+   ],
+   [
+    "surprise",
+    "Surprise"
+   ],
+   [
+    "en-coin",
+    "En coin"
+   ],
+   [
+    "rire",
+    "Rire"
+   ]
+  ]
+ },
+ "tete": {
+  "element": "20261116-093103-xoughm",
+  "cols": 3,
+  "rows": 3,
+  "pieces": [
+   [
+    "ovale",
+    "Ovale"
+   ],
+   [
+    "ronde",
+    "Ronde"
+   ],
+   [
+    "carree",
+    "Carrée"
+   ],
+   [
+    "allongee",
+    "Allongée"
+   ],
+   [
+    "coeur",
+    "Cœur"
+   ],
+   [
+    "large",
+    "Large"
+   ],
+   [
+    "etroite",
+    "Étroite"
+   ],
+   [
+    "joufflue",
+    "Joufflue"
+   ],
+   [
+    "menton",
+    "Menton marqué"
+   ]
+  ]
+ },
+ "cheveux": {
+  "element": "20261116-093104-ydahf2",
+  "cols": 3,
+  "rows": 3,
+  "pieces": [
+   [
+    "herisse",
+    "Court hérissé"
+   ],
+   [
+    "frange",
+    "Frange de côté"
+   ],
+   [
+    "mi-long",
+    "Mi-long"
+   ],
+   [
+    "long",
+    "Long lisse"
+   ],
+   [
+    "carre",
+    "Carré frangé"
+   ],
+   [
+    "afro",
+    "Afro bouclé"
+   ],
+   [
+    "queue",
+    "Queue haute"
+   ],
+   [
+    "chignon",
+    "Chignon"
+   ],
+   [
+    "ondule",
+    "Ondulé"
+   ]
+  ],
+  "genre": {
+   "herisse": "h",
+   "frange": "*",
+   "mi-long": "f",
+   "long": "f",
+   "carre": "f",
+   "afro": "*",
+   "queue": "f",
+   "chignon": "f",
+   "ondule": "f"
+  }
+ },
+ "haut": {
+  "element": "20261116-093214-5lff4v",
+  "cols": 3,
+  "rows": 3,
+  "pieces": [
+   [
+    "tshirt",
+    "T-shirt"
+   ],
+   [
+    "debardeur",
+    "Débardeur"
+   ],
+   [
+    "chemise",
+    "Chemise"
+   ],
+   [
+    "pull",
+    "Pull"
+   ],
+   [
+    "bikini",
+    "Haut de maillot"
+   ],
+   [
+    "robe",
+    "Robe d'été"
+   ],
+   [
+    "sweat",
+    "Sweat zippé"
+   ],
+   [
+    "polo",
+    "Polo"
+   ],
+   [
+    "blouse",
+    "Blouse"
+   ]
+  ],
+  "genre": {
+   "bikini": "f",
+   "robe": "f",
+   "blouse": "f"
+  }
+ },
+ "bas": {
+  "element": "20261116-093214-oji2dr",
+  "cols": 3,
+  "rows": 3,
+  "pieces": [
+   [
+    "short",
+    "Short"
+   ],
+   [
+    "bermuda",
+    "Bermuda"
+   ],
+   [
+    "pantalon",
+    "Pantalon"
+   ],
+   [
+    "jean",
+    "Jean"
+   ],
+   [
+    "mini-jupe",
+    "Mini-jupe"
+   ],
+   [
+    "jupe-longue",
+    "Jupe longue"
+   ],
+   [
+    "short-bain",
+    "Short de bain"
+   ],
+   [
+    "bas-maillot",
+    "Bas de maillot"
+   ],
+   [
+    "legging",
+    "Legging"
+   ]
+  ],
+  "genre": {
+   "mini-jupe": "f",
+   "jupe-longue": "f",
+   "bas-maillot": "f",
+   "legging": "f"
+  }
+ },
+ "chaussures": {
+  "element": "20261116-093214-ttpbna",
+  "cols": 3,
+  "rows": 3,
+  "pieces": [
+   [
+    "tongs",
+    "Tongs"
+   ],
+   [
+    "sandales",
+    "Sandales"
+   ],
+   [
+    "baskets",
+    "Baskets blanches"
+   ],
+   [
+    "bottines",
+    "Bottines"
+   ],
+   [
+    "mocassins",
+    "Mocassins"
+   ],
+   [
+    "hautes",
+    "Baskets montantes"
+   ],
+   [
+    "espadrilles",
+    "Espadrilles"
+   ],
+   [
+    "ballerines",
+    "Ballerines"
+   ],
+   [
+    "running",
+    "Running"
+   ]
+  ]
+ },
+ "chapeau": {
+  "element": "20261116-093225-wrpupk",
+  "cols": 3,
+  "rows": 3,
+  "pieces": [
+   [
+    "casquette",
+    "Casquette"
+   ],
+   [
+    "paille",
+    "Chapeau de paille"
+   ],
+   [
+    "bob",
+    "Bob"
+   ],
+   [
+    "bonnet",
+    "Bonnet"
+   ],
+   [
+    "visiere",
+    "Visière"
+   ],
+   [
+    "capeline",
+    "Capeline"
+   ],
+   [
+    "feutre",
+    "Feutre"
+   ],
+   [
+    "bandana",
+    "Bandana"
+   ],
+   [
+    "snapback",
+    "Casquette plate"
+   ]
+  ]
+ },
+ "lunettes": {
+  "element": "20261116-093224-00n1ig",
+  "cols": 3,
+  "rows": 3,
+  "pieces": [
+   [
+    "aviateur",
+    "Aviateur"
+   ],
+   [
+    "rondes-fines",
+    "Rondes fines"
+   ],
+   [
+    "carrees",
+    "Carrées épaisses"
+   ],
+   [
+    "oeil-de-chat",
+    "Œil de chat"
+   ],
+   [
+    "sport",
+    "Sport"
+   ],
+   [
+    "sans-monture",
+    "Sans monture"
+   ],
+   [
+    "grosses-rondes",
+    "Grosses rondes"
+   ],
+   [
+    "ovales",
+    "Ovales"
+   ],
+   [
+    "rectangulaires",
+    "Rectangulaires"
+   ]
+  ]
+ },
+ "corps": {
+  "element": "20261116-093247-j9puy8",
+  "cols": 4,
+  "rows": 2,
+  "pieces": [
+   [
+    "fine",
+    "Fine"
+   ],
+   [
+    "moyenne",
+    "Moyenne"
+   ],
+   [
+    "courbes",
+    "Courbes"
+   ],
+   [
+    "forte",
+    "Forte"
+   ],
+   [
+    "mince-h",
+    "Mince"
+   ],
+   [
+    "moyen-h",
+    "Moyen"
+   ],
+   [
+    "athletique",
+    "Athlétique"
+   ],
+   [
+    "rond-h",
+    "Rond"
+   ]
+  ],
+  "genre": {
+   "fine": "f",
+   "moyenne": "f",
+   "courbes": "f",
+   "forte": "f",
+   "mince-h": "h",
+   "moyen-h": "h",
+   "athletique": "h",
+   "rond-h": "h"
+  },
+  "composantes": true
+ }
+}

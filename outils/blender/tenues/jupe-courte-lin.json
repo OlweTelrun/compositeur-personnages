@@ -1,0 +1,18 @@
+[
+ {
+  "type": "tshirt",
+  "matiere": "/Users/jeremy/Antigravity/compositeurPersonnages/prototype/public/matieres/tissu-maille.png",
+  "couleur": "#e63946",
+  "teintable": true,
+  "tuile": 0.2
+ },
+ {
+  "type": "jupe",
+  "matiere": "/Users/jeremy/Antigravity/compositeurPersonnages/prototype/public/matieres/tissu-lin.png",
+  "couleur": "#6a9a7c",
+  "teintable": true,
+  "tuile": 0.25,
+  "longueur": 0.55,
+  "evasement": 0.14
+ }
+]

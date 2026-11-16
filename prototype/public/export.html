@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Export de sprites — compositeur</title>
+<style>body{font:15px system-ui;margin:16px;max-width:720px}pre{background:#f3f3f3;padding:8px;overflow:auto}button{padding:8px 14px}</style></head>
+<body>
+<h1>Export de sprites</h1>
+<p>Rend un lot de recettes en PNG 256×256 transparents et les écrit dans <code>prototype/sortie/&lt;segment&gt;/&lt;n&gt;.png</code> (même rangement que le jeu).</p>
+<p><label>Lot : <select id="lot"><option>demo</option><option>fetard-essai</option><option>ages</option></select></label> <button id="go">Exporter</button></p>
+<pre id="rapport">—</pre>
+<script type="module">
+import { preparerImages, dessiner2D } from '/js/rendu2d.js';
+import { exporterLot } from '/js/export.js';
+const sortie = document.getElementById('rapport');
+document.getElementById('go').onclick = async () => {
+  const nom = document.getElementById('lot').value;
+  sortie.textContent = 'rendu…';
+  try {
+    await preparerImages();
+    const lot = await (await fetch(`/lots/${nom}.json`)).json();
+    const rapport = await exporterLot(lot, {
+      dessiner2D,
+      envoyer: async (chemin, blob) => {
+        const r = await fetch(`/api/export/${chemin}`, { method: 'POST', body: blob });
+        if (!r.ok) throw new Error(`serveur ${r.status} : ${await r.text()}`);
+      },
+    });
+    window.__rapport = rapport;
+    sortie.textContent = JSON.stringify(rapport, null, 1);
+  } catch (e) { sortie.textContent = `ERREUR : ${e.message}`; }
+};
+</script></body></html>

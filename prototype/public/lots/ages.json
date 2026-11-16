@@ -1,0 +1,11 @@
+{
+  "segment": "ages",
+  "items": [
+    { "index": 0, "visage": "image.enfant@1", "macros": { "age": 0.05 }, "tenue": "enfant" },
+    { "index": 1, "visage": "image.roux@1", "macros": { "age": 0.2, "proportions": 0.3 }, "tenue": "enfant", "pose": "salut" },
+    { "index": 2, "visage": "image.mix@1", "macros": { "corpulence": 0.2, "musculature": -0.2 } },
+    { "index": 3, "visage": "image.homme@1", "macros": { "musculature": 0.8, "silhouette": 1 }, "tenue": "soiree" },
+    { "index": 4, "visage": "image.ancien@1", "macros": { "age": 0.95 }, "tenue": "senior", "pose": "canne" },
+    { "index": 5, "visage": "image.aine@1", "macros": { "age": 1, "corpulence": 0.3 }, "tenue": "senior", "pose": "canne" }
+  ]
+}

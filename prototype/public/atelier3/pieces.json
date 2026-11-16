@@ -1,0 +1,196 @@
+{
+ "silhouettes": {
+  "moyenne": {
+   "nom": "Moyenne",
+   "genre": "f"
+  },
+  "forte": {
+   "nom": "Forte",
+   "genre": "f"
+  },
+  "moyen-h": {
+   "nom": "Moyen",
+   "genre": "h"
+  },
+  "athletique": {
+   "nom": "Athlétique",
+   "genre": "h"
+  }
+ },
+ "pieces": {
+  "f": {
+   "hauts": [
+    [
+     "tshirt",
+     "T-shirt"
+    ],
+    [
+     "debardeur",
+     "Débardeur"
+    ],
+    [
+     "chemise",
+     "Chemise"
+    ],
+    [
+     "pull",
+     "Pull"
+    ],
+    [
+     "bikini",
+     "Haut de maillot"
+    ],
+    [
+     "polo",
+     "Polo"
+    ],
+    [
+     "sweat",
+     "Sweat zippé"
+    ],
+    [
+     "manches-longues",
+     "Tee manches longues"
+    ]
+   ],
+   "bas": [
+    [
+     "short",
+     "Short"
+    ],
+    [
+     "bermuda",
+     "Bermuda"
+    ],
+    [
+     "pantalon",
+     "Pantalon"
+    ],
+    [
+     "jean",
+     "Jean"
+    ],
+    [
+     "mini-jupe",
+     "Mini-jupe"
+    ],
+    [
+     "jupe-longue",
+     "Jupe longue"
+    ],
+    [
+     "short-bain",
+     "Short de bain"
+    ],
+    [
+     "legging",
+     "Legging"
+    ]
+   ]
+  },
+  "h": {
+   "hauts": [
+    [
+     "tshirt",
+     "T-shirt"
+    ],
+    [
+     "debardeur",
+     "Débardeur"
+    ],
+    [
+     "chemise",
+     "Chemise"
+    ],
+    [
+     "pull",
+     "Pull"
+    ],
+    [
+     "polo",
+     "Polo"
+    ],
+    [
+     "sweat",
+     "Sweat zippé"
+    ],
+    [
+     "manches-longues",
+     "Tee manches longues"
+    ],
+    [
+     "maillot-sport",
+     "Maillot de sport"
+    ]
+   ],
+   "bas": [
+    [
+     "short",
+     "Short"
+    ],
+    [
+     "bermuda",
+     "Bermuda"
+    ],
+    [
+     "pantalon",
+     "Pantalon"
+    ],
+    [
+     "jean",
+     "Jean"
+    ],
+    [
+     "short-bain",
+     "Short de bain"
+    ],
+    [
+     "cargo",
+     "Short cargo"
+    ],
+    [
+     "jogging",
+     "Jogging"
+    ],
+    [
+     "chino",
+     "Chino"
+    ]
+   ]
+  },
+  "chaussures": [
+   [
+    "tongs",
+    "Tongs"
+   ],
+   [
+    "sandales",
+    "Sandales"
+   ],
+   [
+    "baskets",
+    "Baskets basses"
+   ],
+   [
+    "bottines",
+    "Bottines"
+   ],
+   [
+    "mocassins",
+    "Mocassins"
+   ],
+   [
+    "hautes",
+    "Baskets montantes"
+   ],
+   [
+    "espadrilles",
+    "Espadrilles"
+   ],
+   [
+    "running",
+    "Running"
+   ]
+  ]
+ }
+}

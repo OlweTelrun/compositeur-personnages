@@ -1,0 +1,16 @@
+[
+ {
+  "type": "tunique",
+  "couleur": "#2a9d8f",
+  "matiere": "/Users/jeremy/Antigravity/compositeurPersonnages/prototype/public/matieres/tissu-lin.png",
+  "teintable": true,
+  "tuile": 0.25
+ },
+ {
+  "type": "pantalon_large",
+  "couleur": "#4a6fa8",
+  "matiere": "/Users/jeremy/Antigravity/compositeurPersonnages/prototype/public/matieres/tissu-denim.png",
+  "teintable": true,
+  "tuile": 0.25
+ }
+]

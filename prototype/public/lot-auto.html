@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lot automatique — compositeur</title>
+<script type="importmap">{ "imports": { "three": "/vendor/three.module.min.js" } }</script>
+<style>
+body{font:15px system-ui;margin:16px;max-width:1100px}
+.ligne{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin:8px 0}
+label{display:flex;flex-direction:column;font-size:13px;gap:2px}
+button{padding:8px 14px}
+.planche{display:flex;flex-wrap:wrap;gap:4px;background:#e6e6e6;padding:6px;margin:4px 0}
+.planche canvas{width:128px;height:128px}
+#reel canvas{width:auto;height:auto} /* taille réelle : pas d'étirement */
+h2{font-size:14px;margin:14px 0 2px}
+pre{background:#f3f3f3;padding:8px;overflow:auto;max-height:240px}
+</style></head>
+<body>
+<h1>Lot automatique de visiteurs</h1>
+<p>Tire des visiteurs plausibles pour un segment du jeu (graine → même lot), les valide, les affiche à côté des sprites actuels du jeu, puis les exporte dans <code>prototype/sortie/&lt;segment&gt;/</code>. L'installation dans le jeu se fait à part : <code>node outils/installer_dans_beachlife.mjs &lt;segment&gt;</code> (essai à blanc par défaut).</p>
+<div class="ligne">
+  <label>Segment <select id="seg"></select></label>
+  <label>Nombre <input id="n" type="number" min="1" max="40" value="8" style="width:5em"></label>
+  <label>Graine <input id="graine" type="number" min="1" value="1" style="width:6em"></label>
+  <label>Premier index <input id="debut" type="number" min="0" max="900" value="7" style="width:5em" title="index du 1er sprite de sortie = nombre de variantes déjà dans le jeu"></label>
+  <button id="gen">Générer</button>
+  <button id="exp" disabled>Exporter</button>
+</div>
+<h2>Nouveaux (2D, 256 px)</h2><div class="planche" id="neufs"></div>
+<h2>Jeu actuel (même échelle)</h2><div class="planche" id="jeu"></div>
+<h2>À la taille réelle dans le jeu (40 px de haut, ×1) — neufs puis jeu</h2><div class="planche" id="reel" style="align-items:flex-end"></div>
+<pre id="rapport">—</pre>
+<script type="module">
+import { KIT } from '/js/kit.js';
+import { preparerImages, dessiner2D } from '/js/rendu2d.js';
+import { exporterLot, recetteDeLot, mesurer } from '/js/export.js';
+import { SEGMENTS, genererLot } from '/js/segments.js';
+
+await preparerImages(KIT);
+const $ = (id) => document.getElementById(id);
+for (const s of Object.keys(SEGMENTS)) $('seg').add(new Option(s, s));
+let courant = null;
+
+const toile = (S = 256) => { const c = document.createElement('canvas'); c.width = c.height = S; return c; };
+function reduire(src, hauteur) { // sprite 256 → hauteur du personnage = `hauteur` px (comme l'affichage du jeu)
+  const m = mesurer(src);
+  const c = document.createElement('canvas');
+  if (!m.boite) return c;
+  const h = m.boite[3] - m.boite[1], k = hauteur / h;
+  c.width = Math.ceil((m.boite[2] - m.boite[0]) * k); c.height = Math.ceil(hauteur);
+  const ctx = c.getContext('2d'); ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(src, m.boite[0], m.boite[1], m.boite[2] - m.boite[0], h, 0, 0, c.width, c.height);
+  return c;
+}
+async function spriteJeu(seg, i) {
+  const img = new Image();
+  const ok = await new Promise((res) => { img.onload = () => res(true); img.onerror = () => res(false); img.src = `/api/jeu/${seg}/${i}.png`; });
+  if (!ok) return null;
+  const c = toile(); c.getContext('2d').drawImage(img, 0, 0, 256, 256);
+  return c;
+}
+
+$('gen').onclick = async () => {
+  const seg = $('seg').value;
+  const { lot, rejets } = genererLot(seg, Number($('n').value), Number($('graine').value), { debut: Number($('debut').value) });
+  courant = lot;
+  $('neufs').replaceChildren(); $('jeu').replaceChildren(); $('reel').replaceChildren();
+  const rendus = [];
+  for (const it of lot.items) {
+    const c = toile(); dessiner2D(c, recetteDeLot(it), KIT); $('neufs').append(c); rendus.push(c);
+  }
+  const jeu = [];
+  for (let i = 0; i < 12; i++) { const c = await spriteJeu(seg, i); if (c) { $('jeu').append(c); jeu.push(c); } }
+  for (const c of rendus) $('reel').append(reduire(c, 40));
+  const sep = document.createElement('div'); sep.style.cssText = 'width:24px'; $('reel').append(sep);
+  for (const c of jeu) $('reel').append(reduire(c, 40));
+  $('exp').disabled = !lot.items.length;
+  $('rapport').textContent = `${lot.items.length} sprite(s) valides, ${rejets.length} tirage(s) rejeté(s)` + (rejets.length ? `\n${[...new Set(rejets.map((r) => r.motif))].slice(0, 5).join('\n')}` : '') + `\njeu : ${jeu.length} sprite(s) trouvés pour « ${seg} »`;
+};
+
+$('exp').onclick = async () => {
+  if (!courant) return;
+  $('rapport').textContent = 'export…';
+  const rapport = await exporterLot(courant, {
+    dessiner2D,
+    envoyer: async (chemin, blob) => {
+      const r = await fetch(`/api/export/${chemin}`, { method: 'POST', body: blob });
+      if (!r.ok) throw new Error(`serveur ${r.status} : ${await r.text()}`);
+    },
+  });
+  window.__rapport = rapport;
+  $('rapport').textContent = rapport.map((l) => `${l.chemin} : ${l.ok ? 'écrit' : `REFUSÉ — ${l.erreur}`}`).join('\n');
+};
+</script></body></html>

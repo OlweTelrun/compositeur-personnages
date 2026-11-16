@@ -1,0 +1,7 @@
+{
+  "segment": "fetard",
+  "items": [
+    { "index": 7, "visage": "image.roux@1", "morphologie": "fine", "tenue": "soiree", "pose": "verre" },
+    { "index": 8, "visage": "image.homme@1", "morphologie": "ronde", "tenue": "plage", "pose": "danse" }
+  ]
+}

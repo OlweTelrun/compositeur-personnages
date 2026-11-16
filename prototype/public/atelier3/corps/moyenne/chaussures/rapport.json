@@ -1,0 +1,98 @@
+[
+ {
+  "case": 0,
+  "iou_tete": 1.0,
+  "echelle": 0.961,
+  "derive_hors_zone": 39.1,
+  "bbox": [
+   163,
+   701,
+   326,
+   731
+  ]
+ },
+ {
+  "case": 1,
+  "iou_tete": 1.0,
+  "echelle": 0.961,
+  "derive_hors_zone": 40.02,
+  "bbox": [
+   164,
+   703,
+   320,
+   719
+  ]
+ },
+ {
+  "case": 2,
+  "iou_tete": 1.0,
+  "echelle": 0.961,
+  "derive_hors_zone": 36.39,
+  "bbox": [
+   162,
+   667,
+   327,
+   731
+  ]
+ },
+ {
+  "case": 3,
+  "iou_tete": 1.0,
+  "echelle": 0.961,
+  "derive_hors_zone": 33.35,
+  "bbox": [
+   165,
+   654,
+   322,
+   731
+  ]
+ },
+ {
+  "case": 4,
+  "iou_tete": 1.0,
+  "echelle": 0.969,
+  "derive_hors_zone": 37.0,
+  "bbox": [
+   162,
+   693,
+   325,
+   731
+  ]
+ },
+ {
+  "case": 5,
+  "iou_tete": 1.0,
+  "echelle": 0.969,
+  "derive_hors_zone": 36.35,
+  "bbox": [
+   160,
+   649,
+   324,
+   731
+  ]
+ },
+ {
+  "case": 6,
+  "iou_tete": 1.0,
+  "echelle": 0.969,
+  "derive_hors_zone": 36.99,
+  "bbox": [
+   164,
+   700,
+   322,
+   731
+  ]
+ },
+ {
+  "case": 7,
+  "iou_tete": 1.0,
+  "echelle": 0.969,
+  "derive_hors_zone": 34.71,
+  "bbox": [
+   165,
+   668,
+   323,
+   731
+  ]
+ }
+]

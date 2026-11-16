@@ -1,0 +1,98 @@
+[
+ {
+  "case": 0,
+  "iou_tete": 1.0,
+  "echelle": 1.01,
+  "derive_hors_zone": 34.52,
+  "bbox": [
+   157,
+   123,
+   334,
+   326
+  ]
+ },
+ {
+  "case": 1,
+  "iou_tete": 1.0,
+  "echelle": 1.01,
+  "derive_hors_zone": 30.66,
+  "bbox": [
+   180,
+   128,
+   315,
+   326
+  ]
+ },
+ {
+  "case": 2,
+  "iou_tete": 1.0,
+  "echelle": 1.01,
+  "derive_hors_zone": 33.29,
+  "bbox": [
+   135,
+   107,
+   356,
+   358
+  ]
+ },
+ {
+  "case": 3,
+  "iou_tete": 1.0,
+  "echelle": 1.01,
+  "derive_hors_zone": 29.62,
+  "bbox": [
+   129,
+   119,
+   367,
+   361
+  ]
+ },
+ {
+  "case": 4,
+  "iou_tete": 1.0,
+  "echelle": 1.01,
+  "derive_hors_zone": 49.55,
+  "bbox": [
+   189,
+   165,
+   324,
+   417
+  ]
+ },
+ {
+  "case": 5,
+  "iou_tete": 1.0,
+  "echelle": 1.01,
+  "derive_hors_zone": 29.23,
+  "bbox": [
+   162,
+   112,
+   333,
+   327
+  ]
+ },
+ {
+  "case": 6,
+  "iou_tete": 1.0,
+  "echelle": 1.01,
+  "derive_hors_zone": 30.1,
+  "bbox": [
+   134,
+   103,
+   357,
+   357
+  ]
+ },
+ {
+  "case": 7,
+  "iou_tete": 1.0,
+  "echelle": 1.01,
+  "derive_hors_zone": 29.26,
+  "bbox": [
+   137,
+   124,
+   357,
+   365
+  ]
+ }
+]

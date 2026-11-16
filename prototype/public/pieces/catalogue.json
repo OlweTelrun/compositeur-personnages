@@ -1,0 +1,465 @@
+{
+ "schema": "pieces/1",
+ "note": "Catalogue des PIÈCES interchangeables du compositeur pour les corps riggés (outils/blender/rendre_modulaire.py). `blender` = paramètres passés tels quels au rendu. `mode` : peau = matériau sur les faces du corps (vêtement ajusté, limites lisses) ; maillage = vêtement ample séparé ; accessoire = pièce rigide fixée à un os (poids 1,0). `imprimes` = textures répétables (`tuile` = côté d'une tuile en mètres). `coiffures` : cheveux d'origine du corps MASQUÉS (transparence par sommet, géométrie + couleur de la texture d'origine) puis calotte de crâne et volumes séparés fixés à l'os Head (`--coiffure`). `expressions` : option `--expression` (nom ou JSON {sourire, ouverture, sourcils_int, sourcils_ext, oeil_g, oeil_d}) ; déformation du maillage du visage + superpositions (intérieur de bouche, dents, paupières) ; repères du visage : `visage` du registre des corps (`--visage-reperes`). `poses` : option `--pose` (rotation des os des bras vers des directions cibles) ; accessoires `verre` et `telephone` tenus dans la main droite. `ample` = type Blender (tubes) utilisé quand le lot est rendu en vêtements amples (défaut de produire_lot.py), avec ses paramètres ; `couche` = ordre d'habillage (les pièces intérieures d'abord : le vêtement extérieur est confiné autour des précédents).",
+ "pieces": [
+  {
+   "id": "haut.tshirt@1",
+   "categorie": "haut",
+   "mode": "peau",
+   "blender": {
+    "type": "tshirt"
+   },
+   "kit": "haut.tshirt@1",
+   "ample": {
+    "type": "tunique",
+    "manches": 0.45
+   },
+   "couche": 2
+  },
+  {
+   "id": "haut.debardeur@1",
+   "categorie": "haut",
+   "mode": "peau",
+   "blender": {
+    "type": "debardeur"
+   },
+   "ample": {
+    "type": "tunique",
+    "manches": 0.0,
+    "ourlet": 0.3
+   },
+   "couche": 2
+  },
+  {
+   "id": "haut.chemise@1",
+   "categorie": "haut",
+   "mode": "peau",
+   "blender": {
+    "type": "chemise"
+   },
+   "kit": "haut.chemise@1",
+   "ample": {
+    "type": "tunique",
+    "manches": 0.9
+   },
+   "couche": 2
+  },
+  {
+   "id": "haut.pull@1",
+   "categorie": "haut",
+   "mode": "peau",
+   "blender": {
+    "type": "pull"
+   },
+   "kit": "haut.pull@1",
+   "ample": {
+    "type": "tunique",
+    "manches": 0.95
+   },
+   "couche": 2
+  },
+  {
+   "id": "bas.short@1",
+   "categorie": "bas",
+   "mode": "peau",
+   "blender": {
+    "type": "shorts"
+   },
+   "kit": "bas.short@1",
+   "ample": {
+    "type": "short_large"
+   },
+   "couche": 2
+  },
+  {
+   "id": "bas.bermuda@1",
+   "categorie": "bas",
+   "mode": "peau",
+   "blender": {
+    "type": "bermuda"
+   },
+   "ample": {
+    "type": "short_large",
+    "longueur": 0.95
+   },
+   "couche": 2
+  },
+  {
+   "id": "bas.pantalon@1",
+   "categorie": "bas",
+   "mode": "peau",
+   "blender": {
+    "type": "pantalon"
+   },
+   "kit": "bas.pantalon@1",
+   "ample": {
+    "type": "pantalon_large"
+   },
+   "couche": 2
+  },
+  {
+   "id": "bas.jupe@1",
+   "categorie": "bas",
+   "mode": "maillage",
+   "blender": {
+    "type": "jupe",
+    "longueur": 0.9
+   },
+   "kit": "bas.jupe@1",
+   "couche": 2
+  },
+  {
+   "id": "bas.jupe-longue@1",
+   "categorie": "bas",
+   "mode": "maillage",
+   "blender": {
+    "type": "jupe",
+    "longueur": 1.25,
+    "evasement": 0.16
+   },
+   "couche": 2
+  },
+  {
+   "id": "tete.chapeau-paille@1",
+   "categorie": "couvre-chef",
+   "mode": "accessoire",
+   "os": "Head",
+   "blender": {
+    "type": "chapeau_paille",
+    "couleur": "#d8c28a",
+    "ruban": "#e63946"
+   },
+   "kit": "tete.chapeau@1"
+  },
+  {
+   "id": "tete.casquette@1",
+   "categorie": "couvre-chef",
+   "mode": "accessoire",
+   "os": "Head",
+   "blender": {
+    "type": "casquette",
+    "couleur": "#2a6fdb"
+   }
+  },
+  {
+   "id": "visage.lunettes-soleil@1",
+   "categorie": "lunettes",
+   "mode": "accessoire",
+   "os": "Head",
+   "blender": {
+    "type": "lunettes",
+    "couleur": "#1a1a1d"
+   }
+  },
+  {
+   "id": "dos.sac-a-dos@1",
+   "categorie": "sac",
+   "mode": "accessoire",
+   "os": "Spine02",
+   "blender": {
+    "type": "sac_a_dos",
+    "couleur": "#b85a3a"
+   }
+  },
+  {
+   "id": "main.sac-fourre-tout@1",
+   "categorie": "sac",
+   "mode": "accessoire",
+   "os": "LeftHand",
+   "blender": {
+    "type": "sac_fourre_tout",
+    "couleur": "#e8e0d0",
+    "anses": "#2a6fdb"
+   }
+  },
+  {
+   "id": "cou.appareil-photo@1",
+   "categorie": "accessoire",
+   "mode": "accessoire",
+   "os": "Spine02",
+   "blender": {
+    "type": "appareil_photo",
+    "couleur": "#2a2a2e"
+   }
+  },
+  {
+   "id": "main.ballon@1",
+   "categorie": "accessoire",
+   "mode": "accessoire",
+   "os": "RightHand",
+   "blender": {
+    "type": "ballon",
+    "couleur": "#f4f1ea"
+   }
+  },
+  {
+   "id": "haut.gilet@1",
+   "categorie": "haut",
+   "mode": "maillage",
+   "couche": 3,
+   "blender": {
+    "type": "chemise"
+   },
+   "ample": {
+    "type": "tunique",
+    "manches": 0.0,
+    "ourlet": 0.35,
+    "marge": 0.022
+   },
+   "kit": "haut.gilet@1"
+  },
+  {
+   "id": "haut.manteau@1",
+   "categorie": "manteau",
+   "mode": "maillage",
+   "couche": 4,
+   "blender": {
+    "type": "pull"
+   },
+   "ample": {
+    "type": "manteau"
+   },
+   "kit": "haut.manteau@1"
+  },
+  {
+   "id": "robe.robe@1",
+   "categorie": "robe",
+   "mode": "maillage",
+   "couche": 3,
+   "blender": {
+    "type": "robe"
+   },
+   "ample": {
+    "type": "robe"
+   },
+   "kit": null,
+   "note": "3D seulement : pas de pièce `kit` (le kit 2D/3D du prototype ne sait pas la dessiner) ; atteignable depuis un lot en ajoutant `robe.robe@1` côté produire_lot, pas depuis segments.js."
+  }
+ ],
+ "imprimes": [
+  {
+   "id": "imprime.hibiscus@1",
+   "fichier": "matieres/imprimes/hibiscus-turquoise.png",
+   "tuile": 0.3,
+   "teintable": false,
+   "origine": "IA (generer_images) + rendu répétable"
+  },
+  {
+   "id": "imprime.monstera@1",
+   "fichier": "matieres/imprimes/monstera-marine.png",
+   "tuile": 0.3,
+   "teintable": false,
+   "origine": "IA + répétable"
+  },
+  {
+   "id": "imprime.petites-fleurs@1",
+   "fichier": "matieres/imprimes/petites-fleurs-creme.png",
+   "tuile": 0.3,
+   "teintable": false,
+   "origine": "IA + répétable"
+  },
+  {
+   "id": "imprime.marguerites@1",
+   "fichier": "matieres/imprimes/marguerites-bleu.png",
+   "tuile": 0.3,
+   "teintable": false,
+   "origine": "IA + répétable"
+  },
+  {
+   "id": "imprime.ananas@1",
+   "fichier": "matieres/imprimes/ananas-menthe.png",
+   "tuile": 0.3,
+   "teintable": false,
+   "origine": "IA + répétable"
+  },
+  {
+   "id": "imprime.coquillages@1",
+   "fichier": "matieres/imprimes/coquillages-sable.png",
+   "tuile": 0.3,
+   "teintable": false,
+   "origine": "IA + répétable"
+  },
+  {
+   "id": "imprime.rayures-marines@1",
+   "fichier": "matieres/imprimes/rayures-marines.png",
+   "tuile": 0.4,
+   "teintable": false,
+   "origine": "construit par code (exact)"
+  },
+  {
+   "id": "imprime.pois-rouges@1",
+   "fichier": "matieres/imprimes/pois-rouges.png",
+   "tuile": 0.4,
+   "teintable": false,
+   "origine": "construit par code (exact)"
+  }
+ ],
+ "matieres_materials": "kit.matieres (8 matières issues du projet materials : denim, lin, maille, tweed, cuir grain, vichy, rayures, tartan) : voir prototype/public/js/kit.js",
+ "coiffures": [
+  {
+   "id": "cheveux.chauve@1",
+   "categorie": "coiffure",
+   "mode": "coiffure",
+   "os": "Head",
+   "blender": {
+    "type": "chauve",
+    "couleur": "#2a1a10"
+   },
+   "note": "calotte de crâne seule, à la couleur de la peau"
+  },
+  {
+   "id": "cheveux.court@1",
+   "categorie": "coiffure",
+   "mode": "coiffure",
+   "os": "Head",
+   "blender": {
+    "type": "court",
+    "couleur": "#2a1a10"
+   },
+   "note": "calotte courte (coupe « bol » à frange droite)"
+  },
+  {
+   "id": "cheveux.bob@1",
+   "categorie": "coiffure",
+   "mode": "coiffure",
+   "os": "Head",
+   "blender": {
+    "type": "bob",
+    "couleur": "#2a1a10"
+   },
+   "note": "calotte descendant jusqu'à la mâchoire"
+  },
+  {
+   "id": "cheveux.long@1",
+   "categorie": "coiffure",
+   "mode": "coiffure",
+   "os": "Head",
+   "blender": {
+    "type": "long",
+    "couleur": "#2a1a10"
+   },
+   "note": "calotte + nappe tombant dans le dos"
+  },
+  {
+   "id": "cheveux.queue@1",
+   "categorie": "coiffure",
+   "mode": "coiffure",
+   "os": "Head",
+   "blender": {
+    "type": "queue",
+    "couleur": "#2a1a10"
+   },
+   "note": "calotte + queue de cheval attachée à l'arrière"
+  },
+  {
+   "id": "cheveux.chignon@1",
+   "categorie": "coiffure",
+   "mode": "coiffure",
+   "os": "Head",
+   "blender": {
+    "type": "chignon",
+    "couleur": "#2a1a10"
+   },
+   "note": "calotte + chignon sur le dessus"
+  },
+  {
+   "id": "cheveux.afro@1",
+   "categorie": "coiffure",
+   "mode": "coiffure",
+   "os": "Head",
+   "blender": {
+    "type": "afro",
+    "couleur": "#2a1a10"
+   },
+   "note": "calotte volumineuse et ronde"
+  }
+ ],
+ "expressions": [
+  {
+   "id": "expression.neutre@1",
+   "blender": {
+    "expression": "neutre"
+   }
+  },
+  {
+   "id": "expression.sourire@1",
+   "blender": {
+    "expression": "sourire"
+   }
+  },
+  {
+   "id": "expression.grand_sourire@1",
+   "blender": {
+    "expression": "grand_sourire"
+   }
+  },
+  {
+   "id": "expression.rire@1",
+   "blender": {
+    "expression": "rire"
+   }
+  },
+  {
+   "id": "expression.surpris@1",
+   "blender": {
+    "expression": "surpris"
+   }
+  },
+  {
+   "id": "expression.colere@1",
+   "blender": {
+    "expression": "colere"
+   }
+  },
+  {
+   "id": "expression.triste@1",
+   "blender": {
+    "expression": "triste"
+   }
+  },
+  {
+   "id": "expression.clin_d_oeil@1",
+   "blender": {
+    "expression": "clin_d_oeil"
+   }
+  }
+ ],
+ "poses": [
+  {
+   "id": "pose.repos@1",
+   "blender": {
+    "pose": "repos"
+   }
+  },
+  {
+   "id": "pose.hanches@1",
+   "blender": {
+    "pose": "hanches"
+   }
+  },
+  {
+   "id": "pose.salut@1",
+   "blender": {
+    "pose": "salut"
+   }
+  },
+  {
+   "id": "pose.danse@1",
+   "blender": {
+    "pose": "danse"
+   }
+  },
+  {
+   "id": "pose.verre@1",
+   "blender": {
+    "pose": "verre"
+   }
+  },
+  {
+   "id": "pose.selfie@1",
+   "blender": {
+    "pose": "selfie"
+   }
+  }
+ ]
+}

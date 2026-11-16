@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Générateur 2D — visages, corps, tenues</title>
+<style>
+  :root { --fond:#f3f1ec; --carte:#fff; --texte:#1d1d1f; --doux:#6b6b70; --trait:#dcd8cf; --accent:#1f7ae0; --accent-t:#fff; --erreur:#b3261e; --damier:#e6e3dc; }
+  @media (prefers-color-scheme: dark) { :root { --fond:#17181b; --carte:#212328; --texte:#f1f1f3; --doux:#a0a3ab; --trait:#34363d; --accent:#4c9bff; --accent-t:#06121f; --erreur:#ff8a80; --damier:#2b2d33; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--fond); color:var(--texte); font:15px/1.45 system-ui, -apple-system, sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 20px 16px 40px; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .sous { color:var(--doux); margin:0 0 18px; }
+  .grille { display:grid; grid-template-columns: minmax(280px, 340px) 1fr; gap:18px; align-items:start; }
+  @media (max-width: 720px) { .grille { grid-template-columns: 1fr; } }
+  .carte { background:var(--carte); border:1px solid var(--trait); border-radius:12px; padding:14px; }
+  .scene { aspect-ratio: 1; border-radius:8px; display:grid; place-items:center; position:relative; overflow:hidden;
+    background: repeating-conic-gradient(var(--damier) 0 25%, transparent 0 50%) 0 0 / 24px 24px; }
+  .scene img { max-width:100%; max-height:100%; display:block; }
+  .scene .vide { color:var(--doux); text-align:center; padding:20px; }
+  .scene .attente { position:absolute; inset:0; display:grid; place-items:center; background:color-mix(in srgb, var(--carte) 70%, transparent); font-weight:600; }
+  .reel { display:flex; align-items:center; gap:10px; margin-top:10px; color:var(--doux); font-size:13px; }
+  .reel img { height:40px; image-rendering:auto; }
+  .boutons { display:grid; grid-template-columns: repeat(3, 1fr); gap:8px; margin:12px 0; }
+  button { font:inherit; padding:10px 12px; border-radius:8px; border:1px solid var(--trait); background:var(--carte); color:var(--texte); cursor:pointer; }
+  button:hover:not(:disabled) { border-color: var(--accent); }
+  button:focus-visible, select:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  button:disabled { opacity:.5; cursor:default; }
+  button.principal { background:var(--accent); border-color:var(--accent); color:var(--accent-t); font-weight:600; grid-column: 1 / -1; }
+  .ligne { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:10px; }
+  label { color:var(--doux); font-size:13px; }
+  select { font:inherit; padding:7px 8px; border-radius:8px; border:1px solid var(--trait); background:var(--carte); color:var(--texte); }
+  .erreur { color:var(--erreur); margin:8px 0; white-space:pre-wrap; }
+  .detail h2 { font-size:13px; text-transform:uppercase; letter-spacing:.04em; color:var(--doux); margin:14px 0 4px; }
+  .detail p { margin:0; white-space:pre-line; }
+  [hidden] { display:none !important; }
+  .histo { display:flex; gap:8px; overflow-x:auto; padding:4px 0; }
+  .histo button { padding:0; width:72px; height:72px; flex:none; overflow:hidden; background: repeating-conic-gradient(var(--damier) 0 25%, transparent 0 50%) 0 0 / 12px 12px; }
+  .histo button[aria-current="true"] { border:2px solid var(--accent); }
+  .histo img { width:100%; height:100%; object-fit:contain; }
+  .info { color:var(--doux); font-size:13px; margin-top:8px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Générateur 2D de personnages</h1>
+  <p class="sous">Un clic pour un nouveau visage, un nouveau corps ou une nouvelle tenue, au style du jeu BeachLife. Chaque image est faite par le générateur d'images.</p>
+  <div class="grille">
+    <section class="carte" aria-label="Aperçu">
+      <div class="scene" id="scene"><div class="vide">Choisis un segment puis clique sur « Nouveau personnage ».</div></div>
+      <div class="reel"><img id="reel" alt="" hidden><span id="reel-txt">Taille réelle dans le jeu : ~40 px de haut</span></div>
+      <div class="boutons">
+        <button class="principal" id="b-tout">Nouveau personnage</button>
+        <button id="b-visage" disabled>Nouveau visage</button>
+        <button id="b-corps" disabled>Nouveau corps</button>
+        <button id="b-tenue" disabled>Nouvelle tenue</button>
+      </div>
+      <div class="ligne"><label for="segment">Segment</label><select id="segment"></select></div>
+      <div class="ligne" id="ligne-personne" hidden><label for="personne">Personne à modifier</label><select id="personne"></select></div>
+      <div class="ligne"><label for="qualite">Qualité</label>
+        <select id="qualite"><option value="low">rapide (low)</option><option value="medium" selected>normale (medium)</option><option value="high">haute (high)</option></select>
+      </div>
+      <div class="erreur" id="erreur" role="alert"></div>
+      <div class="info" id="info"></div>
+    </section>
+    <section class="carte detail" aria-label="Description">
+      <h2>Visage</h2><p id="d-visage">—</p>
+      <h2>Corps</h2><p id="d-corps">—</p>
+      <h2>Tenue</h2><p id="d-tenue">—</p>
+      <h2>Historique</h2>
+      <div class="histo" id="histo"></div>
+      <div class="info">Les images sont rangées dans <code>prototype/sortie/generateur/</code> (256×256, cadrage du jeu). Rien n'est copié dans le jeu.</div>
+    </section>
+  </div>
+</main>
+<script type="module" src="js/generateur.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Étape 2 — diversité physique</title>
+<style>
+  :root { --bg:#14161b; --carte:#1d2027; --bord:#2e333d; --texte:#e7e9ee; --doux:#9aa1ae; --ok:#4fd18b; --ko:#ff6b6b; }
+  body { margin:0; font:14px/1.45 system-ui,sans-serif; background:var(--bg); color:var(--texte); padding:16px 20px; }
+  h1 { font-size:16px; margin:0 0 4px; } h2 { font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--doux); margin:0 0 10px; }
+  p,.sous { color:var(--doux); font-size:12px; margin:4px 0 12px; }
+  section { background:var(--carte); border:1px solid var(--bord); border-radius:10px; padding:14px; margin-bottom:16px; }
+  .rangee { display:flex; gap:28px; align-items:flex-end; flex-wrap:wrap; }
+  .vue { text-align:center; font-size:12px; color:var(--doux); }
+  .damier { background:conic-gradient(#2a2e38 25%,#23262e 0 50%,#2a2e38 0 75%,#23262e 0) 0 0/16px 16px; border-radius:6px; display:inline-block; padding:6px; }
+  img,canvas { display:block; }
+  table { border-collapse:collapse; } td,th { padding:4px 14px 4px 0; text-align:left; font-weight:normal; }
+  th { color:var(--doux); }
+  .ok { color:var(--ok); } .ko { color:var(--ko); }
+  a { color:#4cc2ff; }
+</style>
+</head>
+<body>
+<h1>Étape 2 — diversité physique avec de vraies pièces</h1>
+<p>Corps de référence produits par generateurImage (3 images, 0,016 $), comparés au rendu procédural de l'étape 1 et à un personnage existant du jeu, à la taille d'usage (40 px de haut). <a href="/">← prototype</a></p>
+
+<section aria-labelledby="a">
+  <h2 id="a">À 40 px de haut (taille du jeu)</h2>
+  <div class="rangee" id="r40"></div>
+</section>
+<section aria-labelledby="b">
+  <h2 id="b">À 160 px de haut</h2>
+  <div class="rangee" id="r160"></div>
+</section>
+<section aria-labelledby="c">
+  <h2 id="c">Mesure : largeur de silhouette ÷ hauteur (boîte englobante des pixels opaques)</h2>
+  <p>Un écart d'au moins 15 % entre deux morphologies est retenu comme « perceptible » (seuil de travail, à valider à l'œil).</p>
+  <table id="mesures"></table>
+  <div id="verdict" role="status"></div>
+</section>
+<section aria-labelledby="d">
+  <h2 id="d">Même corps, 9 visages et coiffures (feuille de variantes) et rendu 3D réel</h2>
+  <p>À gauche : feuille « variantes » (corps ronde inchangé, visage et coiffure différents ; fond gris et accessoires parasites : verre, sac, chaussons). À droite : modèle 3D riggé (Meshy) rendu par Blender, vues de face et de côté, recadrées sur la silhouette, à 40 et 160 px de haut. Dans le fichier brut, le personnage n'occupe que 51 % du cadre et son sol est à 62–64 % (contrat du kit : 97 %).</p>
+  <div class="rangee" id="r3d"></div>
+</section>
+<script type="module">
+import { recetteExemple } from '/js/kit.js';
+import { dessiner2D } from '/js/rendu2d.js';
+const SOURCES = ['fine', 'ronde', 'trapue'];
+const charger = (src) => new Promise((ok, ko) => { const i = new Image(); i.onload = () => ok(i); i.onerror = ko; i.src = src; });
+
+function boite(img) {
+  const c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
+  const x = c.getContext('2d'); x.drawImage(img, 0, 0);
+  const { data, width, height } = x.getImageData(0, 0, c.width, c.height);
+  let x0 = width, x1 = 0, y0 = height, y1 = 0;
+  for (let y = 0; y < height; y++) for (let xx = 0; xx < width; xx++) if (data[(y * width + xx) * 4 + 3] > 20) {
+    if (xx < x0) x0 = xx; if (xx > x1) x1 = xx; if (y < y0) y0 = y; if (y > y1) y1 = y;
+  }
+  return { w: x1 - x0 + 1, h: y1 - y0 + 1 };
+}
+function figure(el, hauteur, nom) {
+  const d = document.createElement('div'); d.className = 'vue';
+  const cadre = document.createElement('span'); cadre.className = 'damier';
+  el.style.height = hauteur + 'px'; el.style.width = 'auto';
+  cadre.append(el); d.append(cadre, document.createElement('br'), nom);
+  return d;
+}
+// canvas rogné sur la silhouette pour afficher le personnage SEUL à la hauteur voulue
+function recadre(canvas) {
+  const x = canvas.getContext('2d');
+  const { data, width, height } = x.getImageData(0, 0, canvas.width, canvas.height);
+  let x0 = width, x1 = 0, y0 = height, y1 = 0;
+  for (let y = 0; y < height; y++) for (let xx = 0; xx < width; xx++) if (data[(y * width + xx) * 4 + 3] > 20) {
+    if (xx < x0) x0 = xx; if (xx > x1) x1 = xx; if (y < y0) y0 = y; if (y > y1) y1 = y;
+  }
+  const o = document.createElement('canvas'); o.width = x1 - x0 + 1; o.height = y1 - y0 + 1;
+  o.getContext('2d').drawImage(canvas, x0, y0, o.width, o.height, 0, 0, o.width, o.height);
+  return o;
+}
+
+const lignes = [];
+const imgs = {};
+for (const m of SOURCES) imgs[m] = await charger(`/etape2/${m}.png`);
+const ref = await charger('/etape2/jeu-ref.png');
+
+const proc = {};
+for (const m of SOURCES) {
+  const r = recetteExemple(); r.identite.morphologie = m; r.apparence.tenue = 'plage';
+  const c = document.createElement('canvas'); c.width = c.height = 512;
+  dessiner2D(c, r); proc[m] = recadre(c);
+}
+
+const defs = [
+  ...SOURCES.map((m) => ({ nom: `${m} · réelle (IA)`, el: () => imgs[m].cloneNode(), mesure: boite(imgs[m]), type: 'reelle', m })),
+  { nom: 'perso du jeu (réf.)', el: () => ref.cloneNode(), mesure: boite(ref), type: 'ref' },
+  ...SOURCES.map((m) => ({ nom: `${m} · procédural`, el: () => { const c = document.createElement('canvas'); c.width = proc[m].width; c.height = proc[m].height; c.getContext('2d').drawImage(proc[m], 0, 0); return c; }, mesure: { w: proc[m].width, h: proc[m].height }, type: 'proc', m })),
+];
+for (const h of [40, 160]) {
+  const rangee = document.getElementById('r' + h);
+  for (const d of defs) rangee.append(figure(d.el(), h, d.nom));
+}
+{
+  const zone = document.getElementById('r3d');
+  const feuille = await charger('/etape2/visages-ronde.png');
+  const tete = await charger('/etape2/tete-ronde.png');
+  const recompo = await charger('/etape2/recompose-tete.png');
+  const roux = await charger('/etape2/recompose-roux.png');
+  const mix = await charger('/etape2/recompose-mix.png');
+  for (const h of [40, 160]) zone.append(figure(mix.cloneNode(), h, `mélange de 2 têtes (crâne roux + traits et cheveux noirs) · ${h} px`));
+  for (const h of [40, 160]) zone.append(figure(roux.cloneNode(), h, `tête rousse assemblée de 8 pièces · ${h} px`));
+  for (const h of [40, 160]) zone.append(figure(recompo.cloneNode(), h, `recomposée : tête chauve + cheveux (×1,25) · ${h} px`));
+  for (const n of ['cheveux', 'sourcils', 'yeux', 'nez', 'bouche', 'oreilles', 'cou']) {
+    const im = await charger(`/etape2/piece-${n}.png`);
+    zone.append(figure(im, n === 'cheveux' ? 160 : Math.max(24, Math.round(im.height * 0.45)), `pièce « ${n} » (extraction)`));
+  }
+  for (const h of [40, 160]) zone.append(figure(tete.cloneNode(), h, `tête détourée (transformation tete) · ${h} px`));
+  zone.append(figure(feuille, 300, 'ronde · 9 visages/coiffures'));
+  for (const [f, nom] of [['ronde-3d-dir00', '3D brut face'], ['ronde-3d-dir02', '3D brut côté'], ['ronde-3d-norm', '3D normalisé (face)']]) {
+    const img = await charger(`/etape2/${f}.png`);
+    const c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
+    c.getContext('2d').drawImage(img, 0, 0);
+    for (const h of [40, 160]) {
+      const r = recadre(c); zone.append(figure(r, h, `${nom} · ${h} px`));
+    }
+  }
+}
+const t = document.getElementById('mesures');
+t.innerHTML = '<tr><th>Source</th><th>Larg./haut.</th><th>vs « fine »</th></tr>';
+const rap = (d) => d.mesure.w / d.mesure.h;
+const ecarts = {};
+for (const d of defs) {
+  const base = defs.find((x) => x.type === d.type && x.m === 'fine');
+  const e = d.m ? rap(d) / rap(base) - 1 : null;
+  if (d.m && d.m !== 'fine') ecarts[d.type + d.m] = e;
+  t.insertAdjacentHTML('beforeend', `<tr><td>${d.nom}</td><td>${rap(d).toFixed(3)}</td><td>${e === null ? '—' : (e >= 0 ? '+' : '') + (e * 100).toFixed(0) + ' %'}</td></tr>`);
+}
+const ok = (k) => Math.abs(ecarts[k]) >= 0.15;
+document.getElementById('verdict').innerHTML = ['reelleronde', 'reelletrapue', 'procronde', 'proctrapue']
+  .map((k) => `<div><strong class="${ok(k) ? 'ok' : 'ko'}">${ok(k) ? '✓' : '✗'}</strong> ${k.replace('reelle', 'réelle ').replace('proc', 'procédural ')} : écart ${(ecarts[k] * 100).toFixed(0)} % ${ok(k) ? '(perceptible)' : '(trop faible)'}</div>`).join('');
+</script>
+</body>
+</html>
