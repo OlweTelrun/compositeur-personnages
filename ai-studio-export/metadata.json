@@ -1,0 +1,6 @@
+{
+  "name": "Compositeur de personnages",
+  "description": "Prototype de compositeur de personnages 2D/3D modulaire pour BeachlifeLike.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

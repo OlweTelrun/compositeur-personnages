@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Animer — compositeur</title>
+<script type="importmap">{ "imports": { "three": "/vendor/three.module.min.js" } }</script>
+<style>
+body{font:15px system-ui;margin:16px;max-width:860px}
+.ligne{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin:8px 0}
+label{display:flex;flex-direction:column;font-size:13px;gap:2px}
+canvas{background:repeating-conic-gradient(#e8e8e8 0 25%,#fff 0 50%) 0 0/16px 16px;border:1px solid #ccc}
+button{padding:8px 14px}pre{background:#f3f3f3;padding:8px;overflow:auto}
+</style></head>
+<body>
+<h1>Animer un personnage</h1>
+<p>Compose un personnage, choisis un clip, regarde le cycle tourner, puis exporte la feuille de sprites (PNG + atlas TexturePacker JSON Hash + manifeste) dans <code>prototype/sortie/&lt;nom&gt;-&lt;clip&gt;/</code>.</p>
+<div class="ligne">
+  <label>Visage <select id="visage" title="Les visages image sont un décalque de face : ils ne tournent pas. Utiliser maillage.* pour les autres directions."></select></label>
+  <label>Morphologie <select id="morpho"></select></label>
+  <label>Tenue <select id="tenue"></select></label>
+  <label>Chaussures <select id="chaussures"><option value="">Noires</option><option value="cuir.grain@1|#7a4a28">Cuir brun</option><option value="cuir.grain@1|#b8892a">Cuir moutarde</option><option value="tissu.lin@1|#d8d0b8">Toile claire</option></select></label>
+  <label>Clip <select id="clip"></select></label>
+  <label>Direction <input id="dir" type="range" min="0" max="359" value="20"><span id="dirv">20°</span></label>
+</div>
+<div class="ligne">
+  <label>Images par cycle <input id="n" type="number" min="2" max="24" value="8" style="width:5em"></label>
+  <label>Directions exportées <select id="nd"><option>1</option><option>4</option><option selected>8</option></select></label>
+  <label>Nom <input id="nom" value="perso" style="width:8em"></label>
+  <button id="export">Exporter la feuille</button>
+</div>
+<canvas id="apercu" width="256" height="256"></canvas>
+<pre id="rapport">—</pre>
+<script type="module">
+import { KIT, recetteExemple } from '/js/kit.js';
+import { preparerImages } from '/js/rendu2d.js';
+import { dessiner3D, preparerModeles } from '/js/rendu3d.js';
+import { CLIPS, poseAnimee } from '/js/anim.js';
+import { geometrie } from '/js/kit.js';
+
+await Promise.all([preparerImages(KIT), preparerModeles(KIT)]);
+const $ = (id) => document.getElementById(id);
+const remplir = (sel, valeurs, def) => { for (const [v, t] of valeurs) sel.add(new Option(t, v)); if (def) sel.value = def; };
+const base = recetteExemple();
+remplir($('visage'), [...Object.keys(KIT.visagesMaillage ?? {}), ...Object.keys(KIT.visagesImage ?? {})].map((k) => [k, k]), 'maillage.ronde@1'); // maillage d'abord : seul visage valable dans toutes les directions
+remplir($('morpho'), Object.keys(KIT.morphologies).map((k) => [k, k]), 'ronde');
+remplir($('tenue'), Object.keys(base.garderobe.valise).map((k) => [k, k]), base.apparence?.tenue);
+remplir($('clip'), Object.entries(CLIPS).map(([k, c]) => [k, c.titre]), 'marche');
+
+function recette() {
+  const r = JSON.parse(JSON.stringify(base));
+  r.identite.visage = $('visage').value;
+  r.identite.morphologie = $('morpho').value;
+  r.apparence.tenue = $('tenue').value;
+  if ($('chaussures').value) { const [matiere, couleur] = $('chaussures').value.split('|'); r.apparence.chaussures = { matiere, couleur }; }
+  return r;
+}
+function image(canvas, r, t, azimutDeg) {
+  const pose = poseAnimee($('clip').value, t, geometrie(r, KIT));
+  dessiner3D(canvas, r, KIT, (azimutDeg * Math.PI) / 180, pose);
+}
+
+// Aperçu en boucle
+const apercu = $('apercu');
+const debut = performance.now();
+function boucle(now) {
+  const clip = CLIPS[$('clip').value];
+  image(apercu, recette(), (((now - debut) / 1000) / clip.duree) % 1, Number($('dir').value));
+  requestAnimationFrame(boucle);
+}
+$('dir').oninput = () => { $('dirv').textContent = `${$('dir').value}°`; };
+requestAnimationFrame(boucle);
+
+// Export : feuille (colonnes = images, lignes = directions) + manifeste
+$('export').onclick = async () => {
+  const sortie = $('rapport');
+  try {
+    sortie.textContent = 'rendu…';
+    const r = recette(), nImg = Number($('n').value), nDir = Number($('nd').value), S = KIT.rendu.taille;
+    const clipNom = $('clip').value, segment = `${$('nom').value.toLowerCase().replace(/[^a-z0-9-]/g, '-')}-${clipNom}`;
+    if (!/^[a-z][a-z0-9-]{0,29}$/.test(segment)) throw new Error('nom invalide (lettres minuscules, chiffres, tirets)');
+    const feuille = document.createElement('canvas');
+    feuille.width = S * nImg; feuille.height = S * nDir;
+    const fctx = feuille.getContext('2d');
+    const c = document.createElement('canvas'); c.width = c.height = S;
+    const directions = [];
+    for (let d = 0; d < nDir; d++) {
+      const az = (360 * d) / nDir;
+      directions.push(az);
+      for (let i = 0; i < nImg; i++) {
+        image(c, r, i / nImg, az);
+        fctx.drawImage(c, i * S, d * S);
+      }
+    }
+    const post = async (chemin, corps) => {
+      const rep = await fetch(`/api/export/${chemin}`, { method: 'POST', body: corps });
+      if (!rep.ok) throw new Error(`serveur ${rep.status} : ${await rep.text()}`);
+    };
+    const png = await new Promise((ok) => feuille.toBlob(ok, 'image/png'));
+    await post(`${segment}/feuille.png`, png);
+    // Atlas TexturePacker « JSON Hash » (même contrat que materials et spritegen) : une entrée par image, cellules uniformes S×S.
+    const nom3 = (a) => String(Math.round(a)).padStart(3, '0');
+    const frames = {}, animations = {};
+    directions.forEach((az, d) => {
+      const anim = `${clipNom}_${nom3(az)}`;
+      animations[anim] = [];
+      for (let i = 0; i < nImg; i++) {
+        const nomImage = `${anim}_${String(i).padStart(2, '0')}`;
+        frames[nomImage] = { frame: { x: i * S, y: d * S, w: S, h: S }, rotated: false, trimmed: false, spriteSourceSize: { x: 0, y: 0, w: S, h: S }, sourceSize: { w: S, h: S } };
+        animations[anim].push(nomImage);
+      }
+    });
+    const atlas = {
+      frames, animations,
+      meta: { app: 'compositeur', version: '1.0', image: 'feuille.png', format: 'RGBA8888', size: { w: feuille.width, h: feuille.height }, scale: '1', frameRate: nImg / CLIPS[clipNom].duree, loop: true },
+    };
+    await post(`${segment}/atlas.json`, JSON.stringify(atlas));
+    const manifeste = {
+      schema: 'animation/1', clip: clipNom, titre: CLIPS[clipNom].titre, duree: CLIPS[clipNom].duree,
+      image: 'feuille.png', cadre: S, colonnes: nImg, lignes: nDir, directionsDeg: directions,
+      recette: r,
+    };
+    await post(`${segment}/manifeste.json`, JSON.stringify(manifeste));
+    sortie.textContent = `OK : sortie/${segment}/feuille.png (${feuille.width}×${feuille.height}, ${(png.size / 1024).toFixed(0)} Ko) + atlas.json + manifeste.json`;
+  } catch (e) { sortie.textContent = `ERREUR : ${e.message}`; }
+};
+</script></body></html>

@@ -1,0 +1,1307 @@
+{
+ "schema": "atelier/1",
+ "note": "Base de pièces de l'atelier de personnages. Chaque variante = un ou plusieurs calques SVG de la toile commune (400×700). `z` = couche d'empilement (voir `ordre`). `{sil}` dans un nom de fichier = id de la silhouette (torse pour les hauts, jambes pour les bas et chaussures). Jetons de couleur : peau*, cheveux*, iris*, levres*, sourcil, c* (vêtement). Fabriqué par outils/fabriquer_atelier.mjs ; remplacer un fichier par un vrai dessin de mêmes repères suffit.",
+ "toile": [
+  400,
+  640
+ ],
+ "ordre": [
+  "cheveux_arriere",
+  "jambes",
+  "chaussures",
+  "torse",
+  "bas",
+  "bras",
+  "haut",
+  "tete",
+  "yeux",
+  "nez",
+  "bouche",
+  "sourcils",
+  "cheveux_avant",
+  "lunettes",
+  "chapeau"
+ ],
+ "silhouettes": [
+  {
+   "id": "fine",
+   "nom": "Fine",
+   "genre": "f",
+   "gabarit": "mince"
+  },
+  {
+   "id": "moyenne",
+   "nom": "Moyenne",
+   "genre": "f",
+   "gabarit": "moyen"
+  },
+  {
+   "id": "ronde",
+   "nom": "Ronde",
+   "genre": "f",
+   "gabarit": "rond"
+  },
+  {
+   "id": "mince-h",
+   "nom": "Mince",
+   "genre": "h",
+   "gabarit": "mince"
+  },
+  {
+   "id": "moyen-h",
+   "nom": "Moyen",
+   "genre": "h",
+   "gabarit": "moyen"
+  },
+  {
+   "id": "athletique",
+   "nom": "Athlétique",
+   "genre": "h",
+   "gabarit": "muscle"
+  },
+  {
+   "id": "rond-h",
+   "nom": "Rond",
+   "genre": "h",
+   "gabarit": "rond"
+  }
+ ],
+ "categories": {
+  "torse": {
+   "nom": "Torse",
+   "groupe": "corps",
+   "variantes": [
+    {
+     "id": "fine",
+     "nom": "Fine",
+     "calques": [
+      {
+       "z": "torse",
+       "fichier": "torse/fine.svg"
+      }
+     ],
+     "genre": "f",
+     "gabarit": "mince"
+    },
+    {
+     "id": "moyenne",
+     "nom": "Moyenne",
+     "calques": [
+      {
+       "z": "torse",
+       "fichier": "torse/moyenne.svg"
+      }
+     ],
+     "genre": "f",
+     "gabarit": "moyen"
+    },
+    {
+     "id": "ronde",
+     "nom": "Ronde",
+     "calques": [
+      {
+       "z": "torse",
+       "fichier": "torse/ronde.svg"
+      }
+     ],
+     "genre": "f",
+     "gabarit": "rond"
+    },
+    {
+     "id": "mince-h",
+     "nom": "Mince",
+     "calques": [
+      {
+       "z": "torse",
+       "fichier": "torse/mince-h.svg"
+      }
+     ],
+     "genre": "h",
+     "gabarit": "mince"
+    },
+    {
+     "id": "moyen-h",
+     "nom": "Moyen",
+     "calques": [
+      {
+       "z": "torse",
+       "fichier": "torse/moyen-h.svg"
+      }
+     ],
+     "genre": "h",
+     "gabarit": "moyen"
+    },
+    {
+     "id": "athletique",
+     "nom": "Athlétique",
+     "calques": [
+      {
+       "z": "torse",
+       "fichier": "torse/athletique.svg"
+      }
+     ],
+     "genre": "h",
+     "gabarit": "muscle"
+    },
+    {
+     "id": "rond-h",
+     "nom": "Rond",
+     "calques": [
+      {
+       "z": "torse",
+       "fichier": "torse/rond-h.svg"
+      }
+     ],
+     "genre": "h",
+     "gabarit": "rond"
+    }
+   ]
+  },
+  "bras": {
+   "nom": "Bras et mains",
+   "groupe": "corps",
+   "variantes": [
+    {
+     "id": "fine",
+     "nom": "Fine",
+     "calques": [
+      {
+       "z": "bras",
+       "fichier": "bras/fine.svg"
+      }
+     ],
+     "genre": "f",
+     "gabarit": "mince"
+    },
+    {
+     "id": "moyenne",
+     "nom": "Moyenne",
+     "calques": [
+      {
+       "z": "bras",
+       "fichier": "bras/moyenne.svg"
+      }
+     ],
+     "genre": "f",
+     "gabarit": "moyen"
+    },
+    {
+     "id": "ronde",
+     "nom": "Ronde",
+     "calques": [
+      {
+       "z": "bras",
+       "fichier": "bras/ronde.svg"
+      }
+     ],
+     "genre": "f",
+     "gabarit": "rond"
+    },
+    {
+     "id": "mince-h",
+     "nom": "Mince",
+     "calques": [
+      {
+       "z": "bras",
+       "fichier": "bras/mince-h.svg"
+      }
+     ],
+     "genre": "h",
+     "gabarit": "mince"
+    },
+    {
+     "id": "moyen-h",
+     "nom": "Moyen",
+     "calques": [
+      {
+       "z": "bras",
+       "fichier": "bras/moyen-h.svg"
+      }
+     ],
+     "genre": "h",
+     "gabarit": "moyen"
+    },
+    {
+     "id": "athletique",
+     "nom": "Athlétique",
+     "calques": [
+      {
+       "z": "bras",
+       "fichier": "bras/athletique.svg"
+      }
+     ],
+     "genre": "h",
+     "gabarit": "muscle"
+    },
+    {
+     "id": "rond-h",
+     "nom": "Rond",
+     "calques": [
+      {
+       "z": "bras",
+       "fichier": "bras/rond-h.svg"
+      }
+     ],
+     "genre": "h",
+     "gabarit": "rond"
+    }
+   ]
+  },
+  "jambes": {
+   "nom": "Jambes et pieds",
+   "groupe": "corps",
+   "variantes": [
+    {
+     "id": "fine",
+     "nom": "Fine",
+     "calques": [
+      {
+       "z": "jambes",
+       "fichier": "jambes/fine.svg"
+      }
+     ],
+     "genre": "f",
+     "gabarit": "mince"
+    },
+    {
+     "id": "moyenne",
+     "nom": "Moyenne",
+     "calques": [
+      {
+       "z": "jambes",
+       "fichier": "jambes/moyenne.svg"
+      }
+     ],
+     "genre": "f",
+     "gabarit": "moyen"
+    },
+    {
+     "id": "ronde",
+     "nom": "Ronde",
+     "calques": [
+      {
+       "z": "jambes",
+       "fichier": "jambes/ronde.svg"
+      }
+     ],
+     "genre": "f",
+     "gabarit": "rond"
+    },
+    {
+     "id": "mince-h",
+     "nom": "Mince",
+     "calques": [
+      {
+       "z": "jambes",
+       "fichier": "jambes/mince-h.svg"
+      }
+     ],
+     "genre": "h",
+     "gabarit": "mince"
+    },
+    {
+     "id": "moyen-h",
+     "nom": "Moyen",
+     "calques": [
+      {
+       "z": "jambes",
+       "fichier": "jambes/moyen-h.svg"
+      }
+     ],
+     "genre": "h",
+     "gabarit": "moyen"
+    },
+    {
+     "id": "athletique",
+     "nom": "Athlétique",
+     "calques": [
+      {
+       "z": "jambes",
+       "fichier": "jambes/athletique.svg"
+      }
+     ],
+     "genre": "h",
+     "gabarit": "muscle"
+    },
+    {
+     "id": "rond-h",
+     "nom": "Rond",
+     "calques": [
+      {
+       "z": "jambes",
+       "fichier": "jambes/rond-h.svg"
+      }
+     ],
+     "genre": "h",
+     "gabarit": "rond"
+    }
+   ]
+  },
+  "tete": {
+   "nom": "Tête",
+   "groupe": "visage",
+   "variantes": [
+    {
+     "id": "ovale",
+     "nom": "Ovale",
+     "calques": [
+      {
+       "z": "tete",
+       "fichier": "tete/ovale.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "ronde",
+     "nom": "Ronde",
+     "calques": [
+      {
+       "z": "tete",
+       "fichier": "tete/ronde.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "carree",
+     "nom": "Carrée",
+     "calques": [
+      {
+       "z": "tete",
+       "fichier": "tete/carree.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "allongee",
+     "nom": "Allongée",
+     "calques": [
+      {
+       "z": "tete",
+       "fichier": "tete/allongee.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "coeur",
+     "nom": "Cœur",
+     "calques": [
+      {
+       "z": "tete",
+       "fichier": "tete/coeur.svg"
+      }
+     ],
+     "genre": "*"
+    }
+   ]
+  },
+  "yeux": {
+   "nom": "Yeux",
+   "groupe": "visage",
+   "variantes": [
+    {
+     "id": "ronds",
+     "nom": "Ronds",
+     "calques": [
+      {
+       "z": "yeux",
+       "fichier": "yeux/ronds.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "amande",
+     "nom": "Amande",
+     "calques": [
+      {
+       "z": "yeux",
+       "fichier": "yeux/amande.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "tombants",
+     "nom": "Tombants",
+     "calques": [
+      {
+       "z": "yeux",
+       "fichier": "yeux/tombants.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "chat",
+     "nom": "En chat",
+     "calques": [
+      {
+       "z": "yeux",
+       "fichier": "yeux/chat.svg"
+      }
+     ],
+     "genre": "f"
+    },
+    {
+     "id": "petits",
+     "nom": "Petits",
+     "calques": [
+      {
+       "z": "yeux",
+       "fichier": "yeux/petits.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "grands-cils",
+     "nom": "Grands cils",
+     "calques": [
+      {
+       "z": "yeux",
+       "fichier": "yeux/grands-cils.svg"
+      }
+     ],
+     "genre": "f"
+    }
+   ]
+  },
+  "sourcils": {
+   "nom": "Sourcils",
+   "groupe": "visage",
+   "variantes": [
+    {
+     "id": "arques",
+     "nom": "Arqués",
+     "calques": [
+      {
+       "z": "sourcils",
+       "fichier": "sourcils/arques.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "droits",
+     "nom": "Droits",
+     "calques": [
+      {
+       "z": "sourcils",
+       "fichier": "sourcils/droits.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "epais",
+     "nom": "Épais",
+     "calques": [
+      {
+       "z": "sourcils",
+       "fichier": "sourcils/epais.svg"
+      }
+     ],
+     "genre": "h"
+    },
+    {
+     "id": "fins",
+     "nom": "Fins",
+     "calques": [
+      {
+       "z": "sourcils",
+       "fichier": "sourcils/fins.svg"
+      }
+     ],
+     "genre": "f"
+    },
+    {
+     "id": "tombants",
+     "nom": "Tombants",
+     "calques": [
+      {
+       "z": "sourcils",
+       "fichier": "sourcils/tombants.svg"
+      }
+     ],
+     "genre": "*"
+    }
+   ]
+  },
+  "nez": {
+   "nom": "Nez",
+   "groupe": "visage",
+   "variantes": [
+    {
+     "id": "petit",
+     "nom": "Petit",
+     "calques": [
+      {
+       "z": "nez",
+       "fichier": "nez/petit.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "pointu",
+     "nom": "Pointu",
+     "calques": [
+      {
+       "z": "nez",
+       "fichier": "nez/pointu.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "large",
+     "nom": "Large",
+     "calques": [
+      {
+       "z": "nez",
+       "fichier": "nez/large.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "retrousse",
+     "nom": "Retroussé",
+     "calques": [
+      {
+       "z": "nez",
+       "fichier": "nez/retrousse.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "bouton",
+     "nom": "Bouton",
+     "calques": [
+      {
+       "z": "nez",
+       "fichier": "nez/bouton.svg"
+      }
+     ],
+     "genre": "*"
+    }
+   ]
+  },
+  "bouche": {
+   "nom": "Bouche",
+   "groupe": "visage",
+   "variantes": [
+    {
+     "id": "sourire",
+     "nom": "Sourire",
+     "calques": [
+      {
+       "z": "bouche",
+       "fichier": "bouche/sourire.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "sourire-dents",
+     "nom": "Grand sourire",
+     "calques": [
+      {
+       "z": "bouche",
+       "fichier": "bouche/sourire-dents.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "neutre",
+     "nom": "Neutre",
+     "calques": [
+      {
+       "z": "bouche",
+       "fichier": "bouche/neutre.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "fine",
+     "nom": "Fine",
+     "calques": [
+      {
+       "z": "bouche",
+       "fichier": "bouche/fine.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "pulpeuse",
+     "nom": "Pulpeuse",
+     "calques": [
+      {
+       "z": "bouche",
+       "fichier": "bouche/pulpeuse.svg"
+      }
+     ],
+     "genre": "f"
+    },
+    {
+     "id": "surprise",
+     "nom": "Surprise",
+     "calques": [
+      {
+       "z": "bouche",
+       "fichier": "bouche/surprise.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "sourire-en-coin",
+     "nom": "En coin",
+     "calques": [
+      {
+       "z": "bouche",
+       "fichier": "bouche/sourire-en-coin.svg"
+      }
+     ],
+     "genre": "*"
+    }
+   ]
+  },
+  "cheveux": {
+   "nom": "Cheveux",
+   "groupe": "visage",
+   "variantes": [
+    {
+     "id": "chauve",
+     "nom": "Chauve",
+     "calques": [],
+     "genre": "*",
+     "poids": 0.4
+    },
+    {
+     "id": "court",
+     "nom": "Court",
+     "calques": [
+      {
+       "z": "cheveux_avant",
+       "fichier": "cheveux/court.avant.svg"
+      }
+     ],
+     "genre": "h"
+    },
+    {
+     "id": "frange",
+     "nom": "Frange",
+     "calques": [
+      {
+       "z": "cheveux_avant",
+       "fichier": "cheveux/frange.avant.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "mi-long",
+     "nom": "Mi-long",
+     "calques": [
+      {
+       "z": "cheveux_arriere",
+       "fichier": "cheveux/mi-long.arriere.svg"
+      },
+      {
+       "z": "cheveux_avant",
+       "fichier": "cheveux/mi-long.avant.svg"
+      }
+     ],
+     "genre": "f"
+    },
+    {
+     "id": "long",
+     "nom": "Long",
+     "calques": [
+      {
+       "z": "cheveux_arriere",
+       "fichier": "cheveux/long.arriere.svg"
+      },
+      {
+       "z": "cheveux_avant",
+       "fichier": "cheveux/long.avant.svg"
+      }
+     ],
+     "genre": "f"
+    },
+    {
+     "id": "carre",
+     "nom": "Carré",
+     "calques": [
+      {
+       "z": "cheveux_arriere",
+       "fichier": "cheveux/carre.arriere.svg"
+      },
+      {
+       "z": "cheveux_avant",
+       "fichier": "cheveux/carre.avant.svg"
+      }
+     ],
+     "genre": "f"
+    },
+    {
+     "id": "queue",
+     "nom": "Queue de côté",
+     "calques": [
+      {
+       "z": "cheveux_arriere",
+       "fichier": "cheveux/queue.arriere.svg"
+      },
+      {
+       "z": "cheveux_avant",
+       "fichier": "cheveux/queue.avant.svg"
+      }
+     ],
+     "genre": "f"
+    },
+    {
+     "id": "chignon",
+     "nom": "Chignon",
+     "calques": [
+      {
+       "z": "cheveux_avant",
+       "fichier": "cheveux/chignon.avant.svg"
+      }
+     ],
+     "genre": "f"
+    },
+    {
+     "id": "boucle",
+     "nom": "Bouclé",
+     "calques": [
+      {
+       "z": "cheveux_arriere",
+       "fichier": "cheveux/boucle.arriere.svg"
+      },
+      {
+       "z": "cheveux_avant",
+       "fichier": "cheveux/boucle.avant.svg"
+      }
+     ],
+     "genre": "*"
+    },
+    {
+     "id": "couronne",
+     "nom": "Dégarni",
+     "calques": [
+      {
+       "z": "cheveux_avant",
+       "fichier": "cheveux/couronne.avant.svg"
+      }
+     ],
+     "genre": "h"
+    }
+   ]
+  },
+  "haut": {
+   "nom": "Haut",
+   "groupe": "tenue",
+   "variantes": [
+    {
+     "id": "aucun",
+     "nom": "Torse nu",
+     "calques": [],
+     "genre": "h",
+     "styles": [
+      "plage"
+     ],
+     "suit": "torse"
+    },
+    {
+     "id": "tshirt",
+     "nom": "T-shirt",
+     "calques": [
+      {
+       "z": "haut",
+       "fichier": "haut/tshirt.{sil}.svg"
+      }
+     ],
+     "genre": "*",
+     "styles": [
+      "plage",
+      "quotidien",
+      "sport"
+     ],
+     "suit": "torse"
+    },
+    {
+     "id": "debardeur",
+     "nom": "Débardeur",
+     "calques": [
+      {
+       "z": "haut",
+       "fichier": "haut/debardeur.{sil}.svg"
+      }
+     ],
+     "genre": "*",
+     "styles": [
+      "plage",
+      "sport"
+     ],
+     "suit": "torse"
+    },
+    {
+     "id": "chemise",
+     "nom": "Chemise",
+     "calques": [
+      {
+       "z": "haut",
+       "fichier": "haut/chemise.{sil}.svg"
+      }
+     ],
+     "genre": "*",
+     "styles": [
+      "quotidien",
+      "chic",
+      "plage"
+     ],
+     "suit": "torse"
+    },
+    {
+     "id": "pull",
+     "nom": "Pull",
+     "calques": [
+      {
+       "z": "haut",
+       "fichier": "haut/pull.{sil}.svg"
+      }
+     ],
+     "genre": "*",
+     "styles": [
+      "quotidien",
+      "chic"
+     ],
+     "suit": "torse"
+    },
+    {
+     "id": "maillot-haut",
+     "nom": "Haut de maillot",
+     "calques": [
+      {
+       "z": "haut",
+       "fichier": "haut/maillot-haut.{sil}.svg"
+      }
+     ],
+     "genre": "f",
+     "styles": [
+      "plage"
+     ],
+     "suit": "torse"
+    },
+    {
+     "id": "robe",
+     "nom": "Robe",
+     "calques": [
+      {
+       "z": "haut",
+       "fichier": "haut/robe.{sil}.svg"
+      }
+     ],
+     "genre": "f",
+     "styles": [
+      "plage",
+      "chic",
+      "quotidien"
+     ],
+     "suit": "torse",
+     "masque": [
+      "bas"
+     ]
+    }
+   ]
+  },
+  "bas": {
+   "nom": "Bas",
+   "groupe": "tenue",
+   "variantes": [
+    {
+     "id": "maillot",
+     "nom": "Maillot de bain",
+     "calques": [
+      {
+       "z": "bas",
+       "fichier": "bas/maillot.{sil}.svg"
+      }
+     ],
+     "genre": "*",
+     "styles": [
+      "plage"
+     ],
+     "suit": "jambes"
+    },
+    {
+     "id": "short",
+     "nom": "Short",
+     "calques": [
+      {
+       "z": "bas",
+       "fichier": "bas/short.{sil}.svg"
+      }
+     ],
+     "genre": "*",
+     "styles": [
+      "plage",
+      "quotidien",
+      "sport"
+     ],
+     "suit": "jambes"
+    },
+    {
+     "id": "bermuda",
+     "nom": "Bermuda",
+     "calques": [
+      {
+       "z": "bas",
+       "fichier": "bas/bermuda.{sil}.svg"
+      }
+     ],
+     "genre": "*",
+     "styles": [
+      "plage",
+      "quotidien",
+      "chic"
+     ],
+     "suit": "jambes"
+    },
+    {
+     "id": "pantalon",
+     "nom": "Pantalon",
+     "calques": [
+      {
+       "z": "bas",
+       "fichier": "bas/pantalon.{sil}.svg"
+      }
+     ],
+     "genre": "*",
+     "styles": [
+      "quotidien",
+      "chic"
+     ],
+     "suit": "jambes"
+    },
+    {
+     "id": "jupe",
+     "nom": "Jupe",
+     "calques": [
+      {
+       "z": "bas",
+       "fichier": "bas/jupe.{sil}.svg"
+      }
+     ],
+     "genre": "f",
+     "styles": [
+      "plage",
+      "quotidien",
+      "chic"
+     ],
+     "suit": "jambes"
+    },
+    {
+     "id": "jupe-longue",
+     "nom": "Jupe longue",
+     "calques": [
+      {
+       "z": "bas",
+       "fichier": "bas/jupe-longue.{sil}.svg"
+      }
+     ],
+     "genre": "f",
+     "styles": [
+      "chic",
+      "plage"
+     ],
+     "suit": "jambes"
+    }
+   ]
+  },
+  "chaussures": {
+   "nom": "Chaussures",
+   "groupe": "tenue",
+   "variantes": [
+    {
+     "id": "nu",
+     "nom": "Pieds nus",
+     "calques": [],
+     "genre": "*",
+     "styles": [
+      "plage"
+     ],
+     "suit": "jambes"
+    },
+    {
+     "id": "tongs",
+     "nom": "Tongs",
+     "calques": [
+      {
+       "z": "chaussures",
+       "fichier": "chaussures/tongs.{sil}.svg"
+      }
+     ],
+     "genre": "*",
+     "styles": [
+      "plage"
+     ],
+     "suit": "jambes"
+    },
+    {
+     "id": "sandales",
+     "nom": "Sandales",
+     "calques": [
+      {
+       "z": "chaussures",
+       "fichier": "chaussures/sandales.{sil}.svg"
+      }
+     ],
+     "genre": "*",
+     "styles": [
+      "plage",
+      "quotidien"
+     ],
+     "suit": "jambes"
+    },
+    {
+     "id": "baskets",
+     "nom": "Baskets",
+     "calques": [
+      {
+       "z": "chaussures",
+       "fichier": "chaussures/baskets.{sil}.svg"
+      }
+     ],
+     "genre": "*",
+     "styles": [
+      "quotidien",
+      "sport",
+      "chic"
+     ],
+     "suit": "jambes"
+    }
+   ]
+  },
+  "chapeau": {
+   "nom": "Chapeau",
+   "groupe": "tenue",
+   "variantes": [
+    {
+     "id": "aucun",
+     "nom": "Aucun",
+     "calques": [],
+     "genre": "*",
+     "styles": [
+      "plage",
+      "quotidien",
+      "sport",
+      "chic"
+     ]
+    },
+    {
+     "id": "casquette",
+     "nom": "Casquette",
+     "calques": [
+      {
+       "z": "chapeau",
+       "fichier": "chapeau/casquette.svg"
+      }
+     ],
+     "genre": "*",
+     "styles": [
+      "quotidien",
+      "sport",
+      "plage"
+     ]
+    },
+    {
+     "id": "paille",
+     "nom": "Chapeau de paille",
+     "calques": [
+      {
+       "z": "chapeau",
+       "fichier": "chapeau/paille.svg"
+      }
+     ],
+     "genre": "*",
+     "styles": [
+      "plage"
+     ]
+    },
+    {
+     "id": "bob",
+     "nom": "Bob",
+     "calques": [
+      {
+       "z": "chapeau",
+       "fichier": "chapeau/bob.svg"
+      }
+     ],
+     "genre": "*",
+     "styles": [
+      "plage",
+      "quotidien"
+     ]
+    }
+   ]
+  },
+  "lunettes": {
+   "nom": "Lunettes",
+   "groupe": "tenue",
+   "variantes": [
+    {
+     "id": "aucune",
+     "nom": "Aucune",
+     "calques": [],
+     "genre": "*",
+     "styles": [
+      "plage",
+      "quotidien",
+      "sport",
+      "chic"
+     ]
+    },
+    {
+     "id": "soleil",
+     "nom": "Soleil",
+     "calques": [
+      {
+       "z": "lunettes",
+       "fichier": "lunettes/soleil.svg"
+      }
+     ],
+     "genre": "*",
+     "styles": [
+      "plage",
+      "quotidien"
+     ]
+    },
+    {
+     "id": "rondes",
+     "nom": "Rondes",
+     "calques": [
+      {
+       "z": "lunettes",
+       "fichier": "lunettes/rondes.svg"
+      }
+     ],
+     "genre": "*",
+     "styles": [
+      "quotidien",
+      "chic"
+     ]
+    }
+   ]
+  }
+ },
+ "palettes": {
+  "peau": [
+   "#fbe0cc",
+   "#f5cba7",
+   "#e8b48a",
+   "#d39a6b",
+   "#b9794a",
+   "#8d5a3b",
+   "#6b4128",
+   "#4a2c1b"
+  ],
+  "cheveux": [
+   [
+    "noir",
+    "#1e1a1a"
+   ],
+   [
+    "brun",
+    "#4a3020"
+   ],
+   [
+    "châtain",
+    "#7a5233"
+   ],
+   [
+    "blond",
+    "#d9b36c"
+   ],
+   [
+    "platine",
+    "#efe0a8"
+   ],
+   [
+    "roux",
+    "#b5502a"
+   ],
+   [
+    "gris",
+    "#9a9a9e"
+   ],
+   [
+    "blanc",
+    "#e8e8ea"
+   ],
+   [
+    "rose",
+    "#e75a9a"
+   ],
+   [
+    "bleu",
+    "#3b7fd9"
+   ]
+  ],
+  "iris": [
+   [
+    "marron",
+    "#6b4423"
+   ],
+   [
+    "noisette",
+    "#8b6b2f"
+   ],
+   [
+    "vert",
+    "#3f8f5a"
+   ],
+   [
+    "bleu",
+    "#3c78c8"
+   ],
+   [
+    "gris",
+    "#7d8a99"
+   ],
+   [
+    "noir",
+    "#2a1c14"
+   ]
+  ],
+  "vetements": [
+   "#ff6f61",
+   "#ffd23f",
+   "#1fb5c4",
+   "#1f3a6b",
+   "#f4f4f2",
+   "#26262b",
+   "#3aa05b",
+   "#ff8fb3",
+   "#ff9442",
+   "#7a56c9",
+   "#8a8f5a",
+   "#d9383a"
+  ],
+  "levres": [
+   "#d9606b",
+   "#c2455a",
+   "#e88a8f",
+   "#a8323f"
+  ]
+ }
+}

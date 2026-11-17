@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compositeur Studio — Générateur de personnages 2D et 3D</title>
+  <meta name="description" content="Compositeur modulaire de personnages 2D et 3D : silhouettes, visages, vêtements et import d'assets personnalisés.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script type="importmap">{ "imports": { "three": "/vendor/three.module.min.js" } }</script>
+  <link rel="stylesheet" href="/css/studio.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="topbar-brand" href="/">Compositeur Studio</a>
+    <nav class="topbar-nav" aria-label="Navigation principale">
+      <a href="/" aria-current="page">Studio 2D / 3D</a>
+      <a href="#plancheSection">Planche</a>
+      <a href="/lot-auto.html">Lots auto</a>
+      <a href="/export.html">Export</a>
+    </nav>
+    <div class="topbar-cta">
+      <button id="btnTopExport" class="btn-primary" type="button">Exporter PNG</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <!-- Rail gauche : Bibliothèque & Import d'assets -->
+    <aside class="panel" aria-label="Bibliothèque d'assets">
+      <div class="panel-head">
+        <h2 class="panel-title">Bibliothèque d'assets</h2>
+        <button id="btnOpenImport" class="btn-primary" type="button">+ Importer</button>
+      </div>
+
+      <div id="catGrid" class="cat-grid" role="group" aria-label="Catégories"></div>
+
+      <div class="cat-toolbar">
+        <span id="catCurrentTitle" class="muted">Silhouettes</span>
+        <button id="btnLockCat" type="button" aria-pressed="false">Verrouiller</button>
+      </div>
+
+      <div id="assetGrid" class="asset-grid" role="listbox" aria-label="Pièces disponibles"></div>
+
+      <div class="swatches-section">
+        <div class="panel-head" style="margin-bottom:4px">
+          <span class="muted">Teint de peau</span>
+          <input id="skinPicker" type="color" aria-label="Couleur de peau" style="width:36px;height:26px;padding:1px">
+        </div>
+        <div id="skinSwatches" class="swatch-row"></div>
+      </div>
+
+      <div class="swatches-section">
+        <div class="panel-head" style="margin-bottom:4px">
+          <span class="muted">Couleur de cheveux</span>
+          <input id="hairPicker" type="color" aria-label="Couleur de cheveux" style="width:36px;height:26px;padding:1px">
+        </div>
+        <div id="hairSwatches" class="swatch-row"></div>
+      </div>
+    </aside>
+
+    <!-- Scène centrale : 2D d'abord + Pont 3D -->
+    <section class="panel" aria-label="Aperçu du personnage">
+      <div class="stage-toolbar">
+        <div class="seg-group" role="group" aria-label="Mode d'affichage">
+          <button type="button" data-view="2d" aria-pressed="false">2D</button>
+          <button type="button" data-view="split" aria-pressed="true">2D + 3D</button>
+          <button type="button" data-view="3d" aria-pressed="false">3D</button>
+        </div>
+
+        <div class="btn-row" style="margin-top:0">
+          <button id="btnRandAll" type="button">Nouveau personnage</button>
+          <button id="btnRandFace" type="button">Nouveau visage</button>
+          <button id="btnRandOutfit" type="button">Nouvelle tenue</button>
+          <button id="btnGuides" type="button" aria-pressed="false">Repères</button>
+          <button id="btnBackdrop" type="button">Fond</button>
+        </div>
+      </div>
+
+      <div id="viewports" class="stage-viewports" data-mode="split">
+        <div id="box2d" class="viewport-box checker">
+          <canvas id="canvas2d" width="560" height="840" role="img" aria-label="Rendu 2D du personnage"></canvas>
+          <div class="hud-overlay">2D · Glisser pour ajuster le calque · Molette pour redimensionner</div>
+        </div>
+        <div id="box3d" class="viewport-box studio-bg">
+          <canvas id="canvas3d" role="img" aria-label="Rendu 3D du personnage"></canvas>
+          <div class="hud-overlay">3D · Glisser pour tourner · Molette pour zoomer</div>
+        </div>
+      </div>
+
+      <p id="metaLine" class="meta-line mono">Chargement du catalogue…</p>
+      <p id="statusLine" class="muted" role="status" style="min-height:1.4em;margin:4px 0 0"></p>
+
+      <div class="game-preview-strip" aria-label="Aperçu à l'échelle du jeu">
+        <div class="game-preview-box">
+          <canvas id="game40" width="40" height="40"></canvas>
+          <span class="muted mono">40 px (jeu)</span>
+        </div>
+        <div class="game-preview-box">
+          <canvas id="game128" width="128" height="128"></canvas>
+          <span class="muted mono">128 px (contrôle)</span>
+        </div>
+        <div class="btn-row" style="margin-left:auto;margin-top:0">
+          <button id="btnExport256" type="button">PNG 256×256</button>
+          <button id="btnExportHD" type="button">PNG HD 2D</button>
+          <button id="btnExport3DPng" type="button">PNG 3D</button>
+          <button id="btnExport3DSheet" type="button">Planche marche 3D</button>
+          <button id="btnCopyRecipe" type="button">Copier JSON</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rail droit : Réglages du calque, calibration et options 3D -->
+    <aside class="panel rail-right" aria-label="Inspecteur de calque et 3D">
+      <div class="panel-head">
+        <h2 id="inspectorTitle" class="panel-title">Réglages : Silhouettes</h2>
+        <button id="btnLayerReset" class="btn-quiet" type="button">Réinitialiser</button>
+      </div>
+
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer">
+        <input id="layerVisible" type="checkbox" checked>
+        <span>Afficher ce calque</span>
+      </label>
+
+      <div class="control-row">
+        <label for="layerTintMode">Teinte</label>
+        <select id="layerTintMode" class="select-field">
+          <option value="cloth">Tissu (recolorer)</option>
+          <option value="skin">Peau du personnage</option>
+          <option value="eyelids">Paupières (peau seule)</option>
+          <option value="hair">Cheveux</option>
+          <option value="none">Couleurs d'origine</option>
+        </select>
+        <input id="layerColor" type="color" aria-label="Couleur du calque" style="width:40px;height:30px;padding:1px">
+      </div>
+
+      <div class="control-row">
+        <label for="rOffsetX">Position X</label>
+        <input id="rOffsetX" type="range" min="-160" max="160" step="1" value="0">
+        <span id="vOffsetX" class="val">0 px</span>
+      </div>
+
+      <div class="control-row">
+        <label for="rOffsetY">Position Y</label>
+        <input id="rOffsetY" type="range" min="-220" max="220" step="1" value="0">
+        <span id="vOffsetY" class="val">0 px</span>
+      </div>
+
+      <div class="control-row">
+        <label for="rScale">Échelle</label>
+        <input id="rScale" type="range" min="0.35" max="2.2" step="0.01" value="1">
+        <span id="vScale" class="val">1.00×</span>
+      </div>
+
+      <div class="control-row">
+        <label for="rRot">Rotation</label>
+        <input id="rRot" type="range" min="-45" max="45" step="1" value="0">
+        <span id="vRot" class="val">0°</span>
+      </div>
+
+      <div class="btn-row">
+        <label style="display:flex;align-items:center;gap:6px;margin-right:auto;cursor:pointer">
+          <input id="layerFlipX" type="checkbox">
+          <span>Miroir</span>
+        </label>
+        <button id="btnLayerZDown" type="button" title="Passer derrière">Derrière</button>
+        <button id="btnLayerZUp" type="button" title="Passer devant">Devant</button>
+      </div>
+
+      <!-- Calibrateur de repères de silhouette -->
+      <div id="silCalibratorBox" class="sub-divider" hidden>
+        <h3 class="panel-title" style="margin-bottom:8px">Repères de la silhouette</h3>
+        <p class="muted" style="margin:0 0 8px">Ajuste où s'accrochent la tête, le haut, le bas et les chaussures.</p>
+        <div class="control-row">
+          <label for="lmNeckY">Cou</label>
+          <input id="lmNeckY" type="range" min="0.02" max="0.35" step="0.005">
+          <span id="vLmNeckY" class="val">0.16</span>
+        </div>
+        <div class="control-row">
+          <label for="lmShoulderY">Épaules Y</label>
+          <input id="lmShoulderY" type="range" min="0.05" max="0.40" step="0.005">
+          <span id="vLmShoulderY" class="val">0.20</span>
+        </div>
+        <div class="control-row">
+          <label for="lmShoulderW">Larg. épaules</label>
+          <input id="lmShoulderW" type="range" min="0.15" max="0.80" step="0.01">
+          <span id="vLmShoulderW" class="val">0.26</span>
+        </div>
+        <div class="control-row">
+          <label for="lmWaistY">Taille Y</label>
+          <input id="lmWaistY" type="range" min="0.20" max="0.60" step="0.005">
+          <span id="vLmWaistY" class="val">0.38</span>
+        </div>
+        <div class="control-row">
+          <label for="lmHipW">Larg. hanches</label>
+          <input id="lmHipW" type="range" min="0.15" max="0.80" step="0.01">
+          <span id="vLmHipW" class="val">0.25</span>
+        </div>
+        <div class="control-row">
+          <label for="lmFeetY">Pieds Y</label>
+          <input id="lmFeetY" type="range" min="0.75" max="1.00" step="0.005">
+          <span id="vLmFeetY" class="val">0.97</span>
+        </div>
+      </div>
+
+      <!-- Paramètres 3D synchronisés -->
+      <div id="controls3dBox" class="sub-divider">
+        <h3 class="panel-title" style="margin-bottom:8px">Passerelle 3D</h3>
+        <div class="control-row" style="grid-template-columns:86px 1fr">
+          <label for="selHead3D">Tête 3D</label>
+          <select id="selHead3D" class="select-field"></select>
+        </div>
+        <div class="control-row" style="grid-template-columns:86px 1fr">
+          <label for="selMatHaut">Matière haut</label>
+          <select id="selMatHaut" class="select-field"></select>
+        </div>
+        <div class="control-row" style="grid-template-columns:86px 1fr">
+          <label for="selMatBas">Matière bas</label>
+          <select id="selMatBas" class="select-field"></select>
+        </div>
+        <div class="control-row" style="grid-template-columns:86px 1fr">
+          <label for="selAnim3D">Animation</label>
+          <select id="selAnim3D" class="select-field">
+            <option value="respiration">Respiration</option>
+            <option value="statique">Statique</option>
+            <option value="marche">Marche</option>
+            <option value="saluer">Saluer</option>
+            <option value="danse">Danse</option>
+          </select>
+        </div>
+        <div class="control-row" style="grid-template-columns:86px 1fr">
+          <label for="selLight3D">Éclairage</label>
+          <select id="selLight3D" class="select-field">
+            <option value="studio">Studio neutre</option>
+            <option value="soleil">Plein soleil</option>
+            <option value="doux">Doux diffus</option>
+          </select>
+        </div>
+        <div class="btn-row">
+          <button type="button" data-cam-az="0">Face</button>
+          <button type="button" data-cam-az="35">3/4</button>
+          <button type="button" data-cam-az="90">Profil</button>
+          <button type="button" data-cam-az="180">Dos</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Planche de tenues -->
+  <section id="plancheSection" class="planche-section" aria-label="Planche de tenues">
+    <div class="panel">
+      <div class="panel-head">
+        <div>
+          <h2 class="panel-title">Planche de tenues — même personnage</h2>
+          <span class="muted">Comparez plusieurs tenues en conservant la silhouette et le visage actifs.</span>
+        </div>
+        <div class="btn-row" style="margin-top:0">
+          <button id="btnKeepLook" type="button">+ Garder cette tenue</button>
+          <button id="btnSixLooks" type="button">+ 6 tenues</button>
+          <button id="btnClearLooks" class="btn-danger" type="button">Vider</button>
+          <button id="btnExportPlanche" type="button">Télécharger la planche</button>
+        </div>
+      </div>
+      <div id="plancheGrid" class="planche-grid"></div>
+    </div>
+  </section>
+
+  <!-- Modale d'importation d'assets personnalisés -->
+  <dialog id="importDialog" class="import-dialog" aria-labelledby="importTitle">
+    <div class="panel-head">
+      <h2 id="importTitle" class="panel-title" style="font-size:16px">Importer vos assets (2D ou modèle GLB 3D)</h2>
+      <button id="btnCloseImport" type="button">Fermer</button>
+    </div>
+
+    <div class="control-row" style="grid-template-columns:140px 1fr">
+      <label for="importCat">Catégorie cible</label>
+      <select id="importCat" class="select-field">
+        <option value="corps">Silhouettes (corps)</option>
+        <option value="tete">Têtes</option>
+        <option value="yeux">Yeux</option>
+        <option value="sourcils">Sourcils</option>
+        <option value="nez">Nez</option>
+        <option value="bouche">Bouches</option>
+        <option value="cheveux">Cheveux</option>
+        <option value="haut">Hauts / Robes</option>
+        <option value="bas">Bas / Jupes</option>
+        <option value="chaussures">Chaussures</option>
+        <option value="chapeau">Chapeaux</option>
+        <option value="lunettes">Lunettes</option>
+        <option value="glb-3d">Modèle 3D (.glb / .gltf)</option>
+      </select>
+    </div>
+
+    <div id="importDropzone" class="dropzone" tabindex="0">
+      <strong>Glissez vos images (PNG, JPG, WebP, SVG) ou fichiers .glb ici</strong>
+      <p class="muted" style="margin:4px 0 0">ou cliquez pour parcourir votre ordinateur (import multiple pris en charge)</p>
+      <input id="importFileInput" type="file" multiple accept="image/*,.svg,.glb,.gltf" hidden>
+    </div>
+    <p id="importFileList" class="muted">Aucun fichier sélectionné.</p>
+
+    <div class="control-row" style="grid-template-columns:140px 1fr">
+      <label for="importBgMode">Détourage du fond</label>
+      <select id="importBgMode" class="select-field">
+        <option value="auto">Automatique (vert / blanc si opaque)</option>
+        <option value="green">Fond vert chroma (#00FF00)</option>
+        <option value="light">Fond blanc / clair</option>
+        <option value="none">Conserver tel quel (PNG transparent)</option>
+      </select>
+    </div>
+
+    <div class="control-row">
+      <label for="importTol">Tolérance</label>
+      <input id="importTol" type="range" min="12" max="95" step="1" value="42">
+      <span class="val">Auto</span>
+    </div>
+
+    <div class="control-row" style="grid-template-columns:140px 1fr">
+      <label for="importTintMode">Couleurs à l'usage</label>
+      <select id="importTintMode" class="select-field">
+        <option value="none">Garder les couleurs d'origine</option>
+        <option value="cloth">Recolorer (tissu neutre)</option>
+        <option value="skin">Adapter au teint de peau</option>
+        <option value="hair">Adapter aux cheveux</option>
+      </select>
+    </div>
+
+    <label style="display:flex;align-items:center;gap:8px;margin:8px 0;cursor:pointer">
+      <input id="importTrim" type="checkbox" checked>
+      <span>Rogner automatiquement les marges transparentes</span>
+    </label>
+
+    <div id="importSilOptions" hidden>
+      <div class="control-row" style="grid-template-columns:140px 1fr">
+        <label for="importGenre">Genre</label>
+        <select id="importGenre" class="select-field">
+          <option value="f">Féminin</option>
+          <option value="h">Masculin</option>
+        </select>
+      </div>
+      <label style="display:flex;align-items:center;gap:8px;margin:6px 0;cursor:pointer">
+        <input id="importStripMagenta" type="checkbox">
+        <span>Convertir une tenue magenta (#FF00FF) en peau</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;margin:6px 0;cursor:pointer">
+        <input id="importHasHead" type="checkbox">
+        <span>La silhouette inclut déjà une tête</span>
+      </label>
+    </div>
+
+    <div id="importPreviewPair" class="preview-pair" hidden>
+      <div class="preview-pane">
+        <span class="muted">Original</span>
+        <canvas id="previewBefore"></canvas>
+      </div>
+      <div class="preview-pane">
+        <span class="muted">Après détourage</span>
+        <canvas id="previewAfter"></canvas>
+      </div>
+    </div>
+
+    <div class="btn-row" style="justify-content:flex-end;margin-top:16px">
+      <button id="btnConfirmImport" class="btn-primary" type="button" disabled>Ajouter à la bibliothèque</button>
+    </div>
+  </dialog>
+
+  <script type="module" src="/js/studio-app.js"></script>
+</body>
+</html>
